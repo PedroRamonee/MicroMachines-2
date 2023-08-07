@@ -6,6 +6,7 @@ Bot::Bot() {
     carro.setTexture(tex);
     carro.setPosition(1672.f, 764.f);
     carro.Transformable::scale(0.2f, 0.2);
+    carro.setOrigin(Vector2f(50.f, 50.f));
 
     posX = carro.getPosition().x;
     posY = carro.getPosition().y;
@@ -64,8 +65,8 @@ void Bot::setPos(RenderWindow* window) {
                 carro.setRotation(initialRotate);
             } else if (carro.getPosition().x > Waypoints[wayPointCount].x &&
                        carro.getPosition().y > Waypoints[wayPointCount].y) {
-                posX -= 1;
-                posY -= 1;
+                posX -= 0.5;
+                posY -= 0.5;
 
                 carro.setRotation(initialRotate - 45.f);
             }
@@ -91,8 +92,8 @@ void Bot::setPos(RenderWindow* window) {
                 carro.setRotation(initialRotate + 180.f);
             } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
                        carro.getPosition().y < Waypoints[wayPointCount].y) {
-                posX += 1;
-                posY += 1;
+                posX += 0.5;
+                posY += 0.5;
 
                 carro.setRotation(initialRotate + 120.f);
             }
@@ -114,5 +115,4 @@ void Bot::setPos(RenderWindow* window) {
 
     carro.setPosition(posX, posY);
     window->draw(carro);
-
 }
