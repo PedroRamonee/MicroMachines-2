@@ -15,35 +15,45 @@ Player::Player() {
 
 void Player::setPos(RenderWindow *window) {
     if (Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        posX += 0.5;
+        posX += 0.25;
         carro.setRotation(initialRotate + 90.f);
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        posX -= 0.5;
+        posX -= 0.25;
         carro.setRotation(initialRotate - 90.f);
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        posY -= 0.5;
+        posY -= 0.25;
         carro.setRotation(initialRotate);
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        posY += 0.5;
+        posY += 0.25;
         carro.setRotation(initialRotate + 180.f);
-        
     }
-    if(Keyboard::isKeyPressed(sf::Keyboard::Right) && Keyboard::isKeyPressed(sf::Keyboard::Up)){
+    if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+        Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate + 45.f);
+        posX -= 0.025;
+        posY += 0.025;
     }
-     if(Keyboard::isKeyPressed(sf::Keyboard::Left) && Keyboard::isKeyPressed(sf::Keyboard::Up)){
+    if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
+        Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate - 45.f);
+        posX += 0.025;
+        posY += 0.025;
     }
-     if(Keyboard::isKeyPressed(sf::Keyboard::Right) && Keyboard::isKeyPressed(sf::Keyboard::Down)){
+    if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+        Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate + 135.f);
+        posX -= 0.025;
+        posY -= 0.025;
     }
-     if(Keyboard::isKeyPressed(sf::Keyboard::Left) && Keyboard::isKeyPressed(sf::Keyboard::Down)){
+    if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
+        Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate - 135.f);
+        posX += 0.025;
+        posY -= 0.025;
     }
-    
 
     cout << posX << "," << posY << endl;
 
