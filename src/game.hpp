@@ -1,12 +1,13 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
+#include "bot.hpp"
 #include "map.hpp"
 #include "player.hpp"
 
 class Game {
    public:
     void Run(RenderWindow *window);
-    void Render(RenderWindow *window, Player *jogador, Mapa *mapa);
+    void Render(RenderWindow *window, Player *jogador, Mapa *mapa, Bot *bot);
 };
 
 #endif  // GAME_HPP_

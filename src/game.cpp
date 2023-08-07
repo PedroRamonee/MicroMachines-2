@@ -1,14 +1,16 @@
 #include "game.hpp"
 
-void Game::Render(RenderWindow *window, Player *jogador, Mapa *mapa) {
-    mapa->setView(window, jogador);
+void Game::Render(RenderWindow *window, Player *jogador, Mapa *mapa, Bot *bot) {
+    mapa->setView(window, jogador->getX(), jogador->getY());
     jogador->setPos(window);
+    bot->setPos(window);
 }
 
 void Game::Run(RenderWindow *window) {
-    Mapa mapa;
-    Player jogador;
+    Mapa *mapa = new Mapa();
+    Player *jogador = new Player();
     Event event;
+    Bot *bot = new Bot();
 
     while (window->isOpen()) {
         while (window->pollEvent(event)) {
@@ -21,7 +23,7 @@ void Game::Run(RenderWindow *window) {
         }
 
         window->clear();
-        Render(window, &jogador, &mapa);
+        Render(window, jogador, mapa, bot);
         window->display();
     }
 }

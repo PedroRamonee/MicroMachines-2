@@ -6,8 +6,6 @@
 #include <iostream>
 #include <vector>
 
-#include "player.hpp"
-
 using namespace std;
 using namespace sf;
 
@@ -22,7 +20,7 @@ class Mapa {
 
    public:
     Mapa();
-    void setView(RenderWindow *window, Player *jogador);
+    void setView(RenderWindow *window, float X, float y);
 };
 
 View setDefault();

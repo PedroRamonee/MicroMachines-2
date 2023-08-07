@@ -9,9 +9,8 @@ Mapa::Mapa() {
     Y = position.y;
 }
 
-void Mapa::setView(RenderWindow *window, Player *jogador) {
-    X = jogador->getX();
-    Y = jogador->getY();
+void Mapa::setView(RenderWindow *window, float X, float Y) {
+ 
     view.setCenter(X, Y);
 
     window->setView(view);
