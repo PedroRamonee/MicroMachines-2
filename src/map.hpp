@@ -14,13 +14,11 @@ class Mapa {
     Texture textura;
     Sprite sprite;
     View view;
-    Vector2f position;
-    float X;
-    float Y;
+    
 
    public:
     Mapa();
-    void setView(RenderWindow *window, float X, float y);
+    void setView(RenderWindow *window, float X, float Y);
 };
 
 View setDefault();

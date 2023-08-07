@@ -4,13 +4,9 @@ Mapa::Mapa() {
     textura.loadFromFile("assets/mapa.png");
     sprite.setTexture(textura);
     view = setDefault();
-    position = view.getCenter();
-    X = position.x;
-    Y = position.y;
 }
 
 void Mapa::setView(RenderWindow *window, float X, float Y) {
- 
     view.setCenter(X, Y);
 
     window->setView(view);
