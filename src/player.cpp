@@ -6,7 +6,7 @@ Player::Player() {
     carro.setTexture(tex);
     carro.setPosition(1700.f, 764.f);
     carro.Transformable::scale(0.2f, 0.2);
-    carro.setOrigin(Vector2f(50.f,50.f));
+    carro.setOrigin(Vector2f(50.f, 50.f));
 
     posX = carro.getPosition().x;
     posY = carro.getPosition().y;
@@ -34,29 +34,30 @@ void Player::setPos(RenderWindow *window) {
     if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
         Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate + 45.f);
-        posX -= 0.025;
-        posY += 0.025;
+        posX -= 0.05;
+        posY += 0.05;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
         Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate - 45.f);
-        posX += 0.025;
-        posY += 0.025;
+        posX += 0.05;
+        posY += 0.05;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
         Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate + 135.f);
-        posX -= 0.025;
-        posY -= 0.025;
+        posX -= 0.05;
+        posY -= 0.05;
     }
+
     if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
         Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate - 135.f);
-        posX += 0.025;
-        posY -= 0.025;
+        posX += 0.05;
+        posY -= 0.05;
     }
 
-   // cout << posX << "," << posY << endl;
+    // cout << posX << "," << posY << endl;
 
     carro.setPosition(posX, posY);
     window->draw(carro);

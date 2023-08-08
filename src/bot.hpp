@@ -12,6 +12,6 @@ class Bot : public Entity {
    public:
     Bot();
     void setPos(RenderWindow* window);
-  
+
 };
 #endif  // BOT_HPP_
