@@ -5,9 +5,15 @@
 #include "player.hpp"
 
 class Game {
+   private:
+    Mapa *mapa = new Mapa();
+    Player *jogador = new Player();
+    Event event;
+    Bot *bot = new Bot();
+
    public:
     void Run(RenderWindow *window);
-    void Render(RenderWindow *window, Player *jogador, Mapa *mapa, Bot *bot);
+    void Render(RenderWindow *window);
 };
 
 #endif  // GAME_HPP_
