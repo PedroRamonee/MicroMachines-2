@@ -51,7 +51,7 @@ Bot::Bot() {
 }
 
 void Bot::setPos(RenderWindow* window) {
-    if (clock.getElapsedTime().asSeconds() > 0.01) {
+    if (clock.getElapsedTime().asMilliseconds() > 2) {
         if (wayPointCount <= 5 && ida == 0) {
             if (carro.getPosition().x > Waypoints[wayPointCount].x &&
                 carro.getPosition().y == Waypoints[wayPointCount].y) {
