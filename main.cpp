@@ -1,7 +1,7 @@
 #include "src/game.hpp"
 
 int main() {
-    RenderWindow window(VideoMode(400, 400), "MicroMachines 2 Remake");
+    RenderWindow window(VideoMode(500, 500), "MicroMachines 2 Remake");
 
     Game *game = new Game();
     game->Run(&window);

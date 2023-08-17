@@ -4,7 +4,7 @@ Player::Player() {
     tex.loadFromFile("assets/Audi.png");
 
     carro.setTexture(tex);
-    carro.setPosition(1700.f, 764.f);
+    carro.setPosition(717.f, 584.f);
     carro.Transformable::scale(0.2f, 0.2);
     carro.setOrigin(Vector2f(50.f, 50.f));
 
@@ -57,7 +57,7 @@ void Player::setPos(RenderWindow *window) {
         posY -= 0.05;
     }
 
-    // cout << posX << "," << posY << endl;
+    cout << posX << "," << posY << endl;
 
     carro.setPosition(posX, posY);
     window->draw(carro);
