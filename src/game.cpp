@@ -2,7 +2,16 @@
 
 void Game::entityRender(RenderWindow *window) {
     mapa->setView(window, jogador->getX(), jogador->getY());
-    jogador->setPos(window);
+
+    if (jogador->getOut() == true) {
+        jogador->outMap(window);
+        if (jogador->getRotate() == 360) {
+            jogador->setVoltas();
+        }
+        sleep(seconds(0.003f));
+    } else {
+        jogador->setPos(window);
+    }
     bot->setPos(window);
 }
 

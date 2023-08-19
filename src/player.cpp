@@ -13,6 +13,7 @@ Player::Player() {
 
     initialRotate = carro.getRotation();
     initialPos = carro.getPosition();
+    actualRotate = carro.getRotation();
 }
 
 void Player::setPos(RenderWindow *window) {
@@ -58,16 +59,37 @@ void Player::setPos(RenderWindow *window) {
         posY -= 0.05;
     }
 
+    actualRotate = carro.getRotation();
+
     cout << posX << "," << posY << endl;
 
     if (posX < 0 || posX > 1200 || posY < 0 || posY > 1200) {
-        posX = initialPos.x;
-        posY = initialPos.y;
+        out = true;
+    } else {
+        carro.setPosition(posX, posY);
+        window->draw(carro);
     }
-
-    carro.setPosition(posX, posY);
-    window->draw(carro);
 }
 
 float Player::getX() { return posX; }
 float Player::getY() { return posY; }
+int Player::getRotate() { return rotate; }
+bool Player::getOut() { return out; }
+void Player::setVoltas() { voltas++; }
+
+void Player::outMap(RenderWindow *window) {
+    carro.setRotation(actualRotate + rotate);
+    window->draw(carro);
+
+    rotate++;
+
+    if (rotate > 360) {
+        rotate = 0;
+    }
+    if (voltas == 3) {
+        out = false;
+        posX = initialPos.x;
+        posY = initialPos.y;
+        voltas = 0;
+    }
+}
