@@ -12,6 +12,7 @@ Player::Player() {
     posY = carro.getPosition().y;
 
     initialRotate = carro.getRotation();
+    initialPos = carro.getPosition();
 }
 
 void Player::setPos(RenderWindow *window) {
@@ -58,6 +59,11 @@ void Player::setPos(RenderWindow *window) {
     }
 
     cout << posX << "," << posY << endl;
+
+    if (posX < 0 || posX > 1200 || posY < 0 || posY > 1200) {
+        posX = initialPos.x;
+        posY = initialPos.y;
+    }
 
     carro.setPosition(posX, posY);
     window->draw(carro);

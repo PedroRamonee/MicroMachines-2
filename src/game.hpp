@@ -13,6 +13,7 @@ class Game {
 
    public:
     void Run(RenderWindow *window);
+    void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
 };
 

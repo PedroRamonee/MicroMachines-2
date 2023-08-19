@@ -1,9 +1,15 @@
 #include "game.hpp"
 
-void Game::Render(RenderWindow *window) {
+void Game::entityRender(RenderWindow *window) {
     mapa->setView(window, jogador->getX(), jogador->getY());
     jogador->setPos(window);
     bot->setPos(window);
+}
+
+void Game::Render(RenderWindow *window) {
+    window->clear(Color::Blue);
+    entityRender(window);
+    window->display();
 }
 
 void Game::Run(RenderWindow *window) {
@@ -17,8 +23,6 @@ void Game::Run(RenderWindow *window) {
             }
         }
 
-        window->clear();
         Render(window);
-        window->display();
     }
 }
