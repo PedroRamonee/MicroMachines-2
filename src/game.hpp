@@ -11,10 +11,19 @@ class Game {
     Event event;
     Bot *bot = new Bot();
 
+    FloatRect PlayerBounds;
+    FloatRect BotBounds;
+    FloatRect nextPosition;
+
+    Clock timer;
+
+    bool colissionDetected = false;
+
    public:
     void Run(RenderWindow *window);
     void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
+    void testColission();
 };
 
 #endif  // GAME_HPP_

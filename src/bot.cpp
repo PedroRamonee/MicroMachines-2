@@ -4,7 +4,7 @@ Bot::Bot() {
     tex.loadFromFile("assets/Taxi.png");
 
     carro.setTexture(tex);
-    carro.setPosition(750.f, 584.f);
+    carro.setPosition(790.f, 600.f);
     carro.Transformable::scale(0.2f, 0.2);
     carro.setOrigin(Vector2f(50.f, 50.f));
 
@@ -172,33 +172,6 @@ void Bot::setPos(RenderWindow* window) {
             }
         }
 
-        /*
-                else {
-                    if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                        carro.getPosition().y == Waypoints[wayPointCount].y) {
-                        posX += 1;
-                        carro.setRotation(initialRotate + 90.f);
-                    } else if (carro.getPosition().y <
-           Waypoints[wayPointCount].y && carro.getPosition().x ==
-           Waypoints[wayPointCount].x) { posY += 1;
-           carro.setRotation(initialRotate + 180.f); } else if
-           (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                               carro.getPosition().y <
-           Waypoints[wayPointCount].y) { posX += 0.5; posY += 0.5;
-
-                        carro.setRotation(initialRotate + 120.f);
-                    }
-
-                    if (carro.getPosition() == Waypoints[wayPointCount]) {
-                        if (wayPointCount == 0) {
-                            ida = 0;
-                            wayPointCount == 0;
-                        } else {
-                            wayPointCount--;
-                        }
-                    }
-                }*/
-
         clock.restart();
     }
 
@@ -206,4 +179,75 @@ void Bot::setPos(RenderWindow* window) {
 
     carro.setPosition(posX, posY);
     window->draw(carro);
+}
+
+float Bot::getRepulsion() { return repulsion; }
+
+void Bot::collide(int typeRotate) {
+    switch (typeRotate) {
+        case 0:
+            posY -= repulsion;
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 1:
+            posX += repulsion;
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 2:
+            posX -= repulsion;
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 3:
+            posY += repulsion;
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 4:
+            posY -= (repulsion / 2);
+            posX += (repulsion / 2);
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 5:
+            posY -= (repulsion / 2);
+            posX -= (repulsion / 2);
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 6:
+            posY += (repulsion / 2);
+            posX += (repulsion / 2);
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        case 7:
+            posY += (repulsion / 2);
+            posX -= (repulsion / 2);
+            repulsion++;
+            if (repulsion > 15) {
+                repulsion = 1;
+            }
+            break;
+        default:
+            break;
+    }
+
+    carro.setPosition(posX, posY);
 }

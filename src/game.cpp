@@ -3,16 +3,32 @@
 void Game::entityRender(RenderWindow *window) {
     mapa->setView(window, jogador->getX(), jogador->getY());
 
-    if (jogador->getOut() == true) {
-        jogador->outMap(window);
-        if (jogador->getRotate() == 360) {
-            jogador->setVoltas();
+    if (colissionDetected == true) {
+        if (timer.getElapsedTime().asMilliseconds() > 10) {
+            jogador->collide();
+            bot->collide(jogador->getTypeRotate());
+            timer.restart();
         }
-        sleep(seconds(0.003f));
+        window->draw(jogador->getSprite());
+        window->draw(bot->getSprite());
+
+        if (jogador->getRepulsion() == 15 && bot->getRepulsion() == 15) {
+            colissionDetected = false;
+        }
     } else {
-        jogador->setPos(window);
+        if (jogador->getOut() == true) {
+            jogador->outMap(window);
+            if (jogador->getRotate() == 360) {
+                jogador->setVoltas();
+            }
+            sleep(seconds(0.003f));
+        } else {
+            jogador->setPos(window);
+        }
+
+        bot->setPos(window);
     }
-    bot->setPos(window);
+    testColission();
 }
 
 void Game::Render(RenderWindow *window) {
@@ -33,5 +49,18 @@ void Game::Run(RenderWindow *window) {
         }
 
         Render(window);
+    }
+}
+
+void Game::testColission() {
+    PlayerBounds = jogador->getSprite().getGlobalBounds();
+    BotBounds = bot->getSprite().getGlobalBounds();
+
+    nextPosition = PlayerBounds;
+    nextPosition.left += jogador->getSpeed().x;
+    nextPosition.top += jogador->getSpeed().y;
+
+    if (BotBounds.intersects(nextPosition)) {
+        colissionDetected = true;
     }
 }

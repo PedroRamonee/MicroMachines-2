@@ -4,11 +4,16 @@
 
 class Entity {
    protected:
-
     Texture tex;
     Sprite carro;
     float posX;
     float posY;
     float initialRotate;
+
+   public:
+    float getX();
+    float getY();
+    Sprite getSprite();
+    Vector2f getPosition();
 };
 #endif  // ENTITY_HPP_
