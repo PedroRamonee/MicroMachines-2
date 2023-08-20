@@ -102,9 +102,8 @@ float Player::getRepulsion() { return repulsion; }
 float Player::getTypeRotate() { return typeRotate; }
 
 
-void Player::outMap(RenderWindow *window) {
+void Player::outMap() {
     carro.setRotation(actualRotate + rotate);
-    window->draw(carro);
 
     rotate++;
 

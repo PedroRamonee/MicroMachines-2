@@ -16,7 +16,7 @@ class Player : public Entity {
    public:
     Player();
     void setPos(RenderWindow *window);
-    void outMap(RenderWindow *window);
+    void outMap();
     int getRotate();
     bool getOut();
     void setVoltas();

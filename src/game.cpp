@@ -17,11 +17,14 @@ void Game::entityRender(RenderWindow *window) {
         }
     } else {
         if (jogador->getOut() == true) {
-            jogador->outMap(window);
-            if (jogador->getRotate() == 360) {
-                jogador->setVoltas();
+            if (timer.getElapsedTime().asMilliseconds() > 3) {
+                jogador->outMap();
+                if (jogador->getRotate() == 360) {
+                    jogador->setVoltas();
+                }
+                timer.restart();
             }
-            sleep(seconds(0.003f));
+            window->draw(jogador->getSprite());
         } else {
             jogador->setPos(window);
         }
