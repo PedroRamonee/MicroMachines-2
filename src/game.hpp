@@ -11,9 +11,9 @@ class Game {
     Event event;
     Bot *bot = new Bot();
 
-    FloatRect PlayerBounds;
-    FloatRect BotBounds;
-    FloatRect nextPosition;
+    FloatRect PlayerHitbox;
+    FloatRect BotHitbox;
+    FloatRect HitboxCollide;
 
     Clock timer;
 

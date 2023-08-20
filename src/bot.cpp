@@ -176,7 +176,7 @@ void Bot::setPos(RenderWindow* window) {
     }
 
     //  cout << posX << "," << posY << endl;
-
+    
     carro.setPosition(posX, posY);
     window->draw(carro);
 }

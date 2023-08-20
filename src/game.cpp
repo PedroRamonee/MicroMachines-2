@@ -53,14 +53,14 @@ void Game::Run(RenderWindow *window) {
 }
 
 void Game::testColission() {
-    PlayerBounds = jogador->getSprite().getGlobalBounds();
-    BotBounds = bot->getSprite().getGlobalBounds();
+    PlayerHitbox = jogador->getSprite().getGlobalBounds();
+    BotHitbox = bot->getSprite().getGlobalBounds();
 
-    nextPosition = PlayerBounds;
-    nextPosition.left += jogador->getSpeed().x;
-    nextPosition.top += jogador->getSpeed().y;
+    HitboxCollide = PlayerHitbox;
+    HitboxCollide.left += jogador->getSpeed().x;
+    HitboxCollide.top += jogador->getSpeed().y;
 
-    if (BotBounds.intersects(nextPosition)) {
+    if (BotHitbox.intersects(HitboxCollide)) {
         colissionDetected = true;
     }
 }
