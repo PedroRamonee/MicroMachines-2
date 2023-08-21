@@ -6,9 +6,9 @@ class Bot : public Entity {
    private:
     Clock clock;
     vector<Vector2f> Waypoints;
-    int wayPointCount = 0;
-    int ida = 0;  // temporario
-    float repulsion = 1;
+    int wayPointCount;
+    int ida;  // temporario
+    float repulsion;
 
    public:
     Bot();

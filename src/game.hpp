@@ -13,17 +13,18 @@ class Game {
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
-    FloatRect HitboxCollide;
 
     Clock timer;
 
     bool colissionDetected = false;
 
    public:
-    void Run(RenderWindow *window);
     void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
     void testColission();
+    void colissionFunctions(RenderWindow *window);
+    void renderFunctions(RenderWindow *window);
+    void Run(RenderWindow *window);
 };
 
 #endif  // GAME_HPP_

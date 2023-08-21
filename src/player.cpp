@@ -17,6 +17,12 @@ Player::Player() {
 
     velocidade.x = 0;
     velocidade.y = 0;
+
+    typeRotate = 0;
+    repulsion = 1;
+    voltas = 0;
+    rotate = 0;
+    out = false;
 }
 
 void Player::setPos(RenderWindow *window) {
@@ -100,7 +106,6 @@ void Player::setVoltas() { voltas++; }
 Vector2f Player::getSpeed() { return velocidade; }
 float Player::getRepulsion() { return repulsion; }
 float Player::getTypeRotate() { return typeRotate; }
-
 
 void Player::outMap() {
     carro.setRotation(actualRotate + rotate);

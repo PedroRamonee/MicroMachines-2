@@ -48,6 +48,10 @@ Bot::Bot() {
 
         Waypoints.push_back(defaultType);
     }
+
+    wayPointCount = 0;
+    ida = 0;
+    repulsion = 1;
 }
 
 void Bot::setPos(RenderWindow* window) {
@@ -176,7 +180,7 @@ void Bot::setPos(RenderWindow* window) {
     }
 
     //  cout << posX << "," << posY << endl;
-    
+
     carro.setPosition(posX, posY);
     window->draw(carro);
 }

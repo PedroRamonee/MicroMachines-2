@@ -6,12 +6,13 @@
 class Player : public Entity {
    private:
     Vector2f initialPos;
-    bool out = false;
-    int voltas = 0, rotate = 0;
+    bool out;
+    int voltas;
+    int rotate;
     float actualRotate;
     Vector2f velocidade;
-    float repulsion = 1;
-    int typeRotate = 0;
+    float repulsion;
+    int typeRotate;
 
    public:
     Player();
