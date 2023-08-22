@@ -1,6 +1,16 @@
 #include "bot.hpp"
 
 Bot::Bot() {
+    /*
+    Construção da classe Bot:
+
+        - Textura definida
+        - Sprite definido, posicionado, escaldo e com origem definida
+        - Define a posição X e Y como a posição inicial do carro
+        - Inicializa a rotação inicial do carro
+        - Inicializa os Waypoints do bot
+        - Inicializa as variáveis de controle
+    */
     tex.loadFromFile("assets/Taxi.png");
 
     carro.setTexture(tex);
@@ -55,6 +65,13 @@ Bot::Bot() {
 }
 
 void Bot::setPos(RenderWindow* window) {
+    /*
+ Operações basicas de movimentação do bot:
+
+     - Altera a posição do carro até chegar ao ponto desejado (waypoint)
+     - Define a posição do sprite e desenha na tela
+
+ */
     if (clock.getElapsedTime().asMilliseconds() > 2) {
         if (wayPointCount <= 5 && ida == 0) {
             if (carro.getPosition().x != Waypoints[wayPointCount].x &&
@@ -185,9 +202,15 @@ void Bot::setPos(RenderWindow* window) {
     window->draw(carro);
 }
 
-float Bot::getRepulsion() { return repulsion; }
+float Bot::getRepulsion() { return repulsion; }  // retorna a repulsão do bot
 
 void Bot::collide(int typeRotate) {
+    /*
+   Realiza as operações necessarias para realizar a colisão do Bot:
+
+       - Altera a posição do Bot  em relação a rotação atual do jogador
+       - Define a posição do sprite após realziar a operação
+   */
     switch (typeRotate) {
         case 0:
             posY -= repulsion;

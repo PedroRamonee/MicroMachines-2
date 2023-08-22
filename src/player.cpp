@@ -1,6 +1,16 @@
 #include "player.hpp"
 
 Player::Player() {
+    /*
+    Construção da classe Player:
+
+        - Textura definida
+        - Sprite definido, posicionado, escaldo e com origem definida
+        - Define a posição X e Y como a posição inicial do carro
+        - Inicializa a rotação inicial do carro, a posição (Vector2f), e a
+    rotação atual do carro
+        - Inicializa a velocidade do carro, e as variáveis de controle
+    */
     tex.loadFromFile("assets/Audi.png");
 
     carro.setTexture(tex);
@@ -26,6 +36,17 @@ Player::Player() {
 }
 
 void Player::setPos(RenderWindow *window) {
+    /*
+    Operações basicas de movimentação do jogador:
+
+        - Ao pressionar uma tecla define a velocidade e a rotação do carro e
+    estabelece o valor da variavel de controle de rotação
+        - Define a varivel actualRotate com a rotação atual do carro
+        - Altera a posição do carro
+        - Se o carro sair da tela define a variavel de controle out como true
+    que desencadeia as funções que corrigem a posição do player, caso contrário
+    define a o posição do sprite e desenha na tela
+    */
     velocidade.x = 0;
     velocidade.y = 0;
     if (Keyboard::isKeyPressed(sf::Keyboard::Right)) {
@@ -100,14 +121,38 @@ void Player::setPos(RenderWindow *window) {
     }
 }
 
-int Player::getRotate() { return rotate; }
-bool Player::getOut() { return out; }
-void Player::setVoltas() { voltas++; }
-Vector2f Player::getSpeed() { return velocidade; }
-float Player::getRepulsion() { return repulsion; }
-float Player::getTypeRotate() { return typeRotate; }
+int Player::getRotate() {
+    return rotate;
+}  // retorna a variavel de controle de rotação
+bool Player::getOut() { return out; }  // retorna se o carro saiu ou nao da tela
+void Player::setVoltas() {
+    voltas++;
+}  // aumenta em 1 a contagem de voltas (rotação) do carro
+Vector2f Player::getSpeed() {
+    return velocidade;
+}  // retorna a velocidade do personagem
+float Player::getRepulsion() {
+    return repulsion;
+}  // retorna a repulsão do jogador
+float Player::getTypeRotate() {
+    return typeRotate;
+}  // retorna o tipo de rotação atual do jogador
 
 void Player::outMap() {
+    /*
+    Realiza as operações necessárias para corrigir o posicionamento do jogador
+    caso saia da tela:
+
+        - Define a rotação do sprite
+        - aumenta o tanto que o carro rotacionará na proxima vez que a função
+    for chamada
+        - caso o carro ja tenha girado 360°, define como 0 a proxima rotação do
+    sprite
+        - se o carro ja tiver girado 3 vezes o carro retorna pra posiçaõ inicial
+    e define como false a variavel de controle out
+
+    */
+
     carro.setRotation(actualRotate + rotate);
 
     rotate++;
@@ -124,6 +169,12 @@ void Player::outMap() {
 }
 
 void Player::collide() {
+    /*
+    Realiza as operações necessarias para realizar a colisão do Player:
+
+        - Altera a posição do jogador em relação a rotação atual dele
+        - Define a posição do sprite após realziar a operação
+    */
     switch (typeRotate) {
         case 0:
             posY += repulsion;
