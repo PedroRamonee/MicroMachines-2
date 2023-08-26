@@ -1,6 +1,7 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 #include "bot.hpp"
+#include "checkpoint.hpp"
 #include "map.hpp"
 #include "player.hpp"
 
@@ -10,6 +11,7 @@ class Game {
     Player *jogador = new Player();
     Event event;
     Bot *bot = new Bot();
+    Checkpoint Checkpoints;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
@@ -25,6 +27,7 @@ class Game {
     void colissionFunctions(RenderWindow *window);
     void renderFunctions(RenderWindow *window);
     void Run(RenderWindow *window);
+    void testCheckpoint();
 };
 
 #endif  // GAME_HPP_
