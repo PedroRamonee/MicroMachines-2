@@ -1,6 +1,13 @@
 #include "checkpoint.hpp"
 
 Checkpoint ::Checkpoint() {
+    /*
+   Construtor da classe Checkpoint:
+
+       - Checkpoints são definidos
+       - Hitbox é inicidalizada
+   */
+
     Vector2f defaultType;
 
     for (int i = 0; i < 6; i++) {
@@ -48,10 +55,18 @@ Checkpoint ::Checkpoint() {
     quadrado.setFillColor(Color::Cyan);
 }
 
-FloatRect Checkpoint::getHitbox() { return HitboxCheckpoint; }
-RectangleShape Checkpoint::getQuadrado() { return quadrado; }
+FloatRect Checkpoint::getHitbox() {
+    return HitboxCheckpoint;
+}  // retorna a hitbox
+RectangleShape Checkpoint::getQuadrado() {
+    return quadrado;
+}  // retorna o quadrado
 
 void Checkpoint::setCheckpoint() {
+    /*
+     Realiza a troca de checkpoints
+  */
+
     if (CurrentCheckpoint == 5) {
         CurrentCheckpoint = 0;
     } else {
