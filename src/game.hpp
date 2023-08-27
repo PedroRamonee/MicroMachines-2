@@ -18,6 +18,7 @@ class Game {
     SoundBuffer outBuffer;
     Sound outSound;
     bool control;
+    int controlPanel;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;

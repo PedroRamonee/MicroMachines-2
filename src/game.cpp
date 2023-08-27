@@ -12,6 +12,7 @@ Game::Game() {
     tema.setVolume(40.f);
     tema.play();
     control = true;
+    controlPanel = 0;
 }
 
 void Game::entityRender(RenderWindow *window) {
@@ -166,6 +167,18 @@ void Game::Run(RenderWindow *window) {
             }
         }
 
-        Render(window);
+        switch (controlPanel) {
+            case 0:
+                Render(window);
+                break;
+            case 1:
+                // menu
+                break;
+            case 2:
+                // etc...
+                break;
+            default:
+                break;
+        }
     }
 }
