@@ -13,6 +13,8 @@ Player::Player() {
     */
     tex.loadFromFile("assets/Audi.png");
 
+    this->outmusic.openFromFile("assets/out.wav");
+
     carro.setTexture(tex);
     carro.setPosition(690.f, 600.f);
     carro.Transformable::scale(0.2f, 0.2);
@@ -154,7 +156,6 @@ void Player::outMap() {
     e define como false a variavel de controle out
 
     */
-
     carro.setRotation(actualRotate + rotate);
 
     rotate++;

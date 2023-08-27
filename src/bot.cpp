@@ -26,7 +26,7 @@ Bot::Bot() {
 
     Vector2f defaultType;
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 14; i++) {
         switch (i) {
             case 0:
                 defaultType.x = carro.getPosition().x;
@@ -52,6 +52,42 @@ Bot::Bot() {
                 defaultType.x = 482;
                 defaultType.y = 289;
                 break;
+             case 6:
+                defaultType.x = 601;
+                defaultType.y = 289;
+                break;
+            case 7:
+                defaultType.x = 752;
+                defaultType.y = 380;
+                break;
+            case 8:
+                defaultType.x = 1081;
+                defaultType.y = 380;
+                break;
+            case 9:
+                defaultType.x = 1107;
+                defaultType.y = 532;
+                break;
+            case 10:
+                defaultType.x = 1106;
+                defaultType.y = 904;
+                break;
+            case 11:
+                defaultType.x = 104;
+                defaultType.y = 904;
+                break;
+            case 12:
+                defaultType.x = 76;
+                defaultType.y = 688;
+                break;
+            case 13:
+                defaultType.x = 681;
+                defaultType.y = 681;
+                break;
+            case 14:
+                defaultType.x = 717;
+                defaultType.y = 602;
+                break;
             default:
                 break;
         }
@@ -73,7 +109,7 @@ void Bot::setPos(RenderWindow* window) {
 
  */
     if (clock.getElapsedTime().asMilliseconds() > 2) {
-        if (wayPointCount <= 5 && ida == 0) {
+        if (wayPointCount <= 13 && ida == 0) {
             if (carro.getPosition().x != Waypoints[wayPointCount].x &&
                 carro.getPosition().y == Waypoints[wayPointCount].y) {
                 if (carro.getPosition().x > Waypoints[wayPointCount].x) {
@@ -125,9 +161,9 @@ void Bot::setPos(RenderWindow* window) {
             }
 
             if (carro.getPosition() == Waypoints[wayPointCount]) {
-                if (wayPointCount == 5) {
+                if (wayPointCount == 13) {
                     ida = 1;
-                    wayPointCount == 4;
+                    wayPointCount = 12;
                 } else {
                     wayPointCount++;
                 }
@@ -186,7 +222,7 @@ void Bot::setPos(RenderWindow* window) {
             if (carro.getPosition() == Waypoints[wayPointCount]) {
                 if (wayPointCount == 0) {
                     ida = 0;
-                    wayPointCount == 1;
+                    wayPointCount = 1;
                 } else {
                     wayPointCount--;
                 }

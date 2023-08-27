@@ -12,6 +12,7 @@ class Game {
     Event event;
     Bot *bot = new Bot();
     Checkpoint Checkpoints;
+    Music tema;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
@@ -21,6 +22,7 @@ class Game {
     bool colissionDetected = false;
 
    public:
+    Game();
     void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
     void testColission();

@@ -1,5 +1,12 @@
 #include "game.hpp"
 
+Game::Game(){
+    this->tema.openFromFile("assets/tema2.wav");
+    tema.setLoop(true);
+    tema.setVolume(40.f);
+    tema.play();
+}
+
 void Game::entityRender(RenderWindow *window) {
     /*
     Renderização das entidades do jogo:
@@ -52,7 +59,7 @@ void Game::testColission() {
 
     PlayerHitbox = jogador->getSprite().getGlobalBounds();
     BotHitbox = bot->getSprite().getGlobalBounds();
-
+ 
     if (BotHitbox.intersects(PlayerHitbox)) {
         colissionDetected = true;
     }
@@ -109,7 +116,7 @@ void Game::renderFunctions(RenderWindow *window) {
 
     */
     if (jogador->getOut() == true) {
-        if (timer.getElapsedTime().asMilliseconds() > 3) {
+        if (timer.getElapsedTime().asMilliseconds() > 1) {
             jogador->outMap();
             if (jogador->getRotate() == 360) {
                 jogador->setVoltas();
