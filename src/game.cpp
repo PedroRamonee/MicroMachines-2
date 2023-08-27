@@ -2,6 +2,8 @@
 
 Game::Game(){
     this->tema.openFromFile("assets/tema2.wav");
+    this-colisionMusic.openFromFile("assets/colisao.wav");
+    colisionMusic.setVolume(40.f);
     tema.setLoop(true);
     tema.setVolume(40.f);
     tema.play();
@@ -62,6 +64,7 @@ void Game::testColission() {
  
     if (BotHitbox.intersects(PlayerHitbox)) {
         colissionDetected = true;
+        colisionMusic.play();
     }
 }
 

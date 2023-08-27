@@ -13,6 +13,7 @@ class Game {
     Bot *bot = new Bot();
     Checkpoint Checkpoints;
     Music tema;
+    Music colisionMusic;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
