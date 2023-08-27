@@ -1,12 +1,17 @@
 #include "game.hpp"
 
-Game::Game(){
+Game::Game() {
     this->tema.openFromFile("assets/tema2.wav");
-    this-colisionMusic.openFromFile("assets/colisao.wav");
-    colisionMusic.setVolume(40.f);
+    this->colisionBuffer.loadFromFile("assets/colisao.wav");
+    this->outBuffer.loadFromFile("assets/out.wav");
+    this->colisionSound.setBuffer(colisionBuffer);
+    this->outSound.setBuffer(outBuffer);
+    colisionSound.setVolume(40.f);
+    outSound.setVolume(40.f);
     tema.setLoop(true);
     tema.setVolume(40.f);
     tema.play();
+    control = true;
 }
 
 void Game::entityRender(RenderWindow *window) {
@@ -61,10 +66,10 @@ void Game::testColission() {
 
     PlayerHitbox = jogador->getSprite().getGlobalBounds();
     BotHitbox = bot->getSprite().getGlobalBounds();
- 
+
     if (BotHitbox.intersects(PlayerHitbox)) {
         colissionDetected = true;
-        colisionMusic.play();
+        colisionSound.play();
     }
 }
 
@@ -119,6 +124,10 @@ void Game::renderFunctions(RenderWindow *window) {
 
     */
     if (jogador->getOut() == true) {
+        if (control) {
+            outSound.play();
+            control = false;
+        }
         if (timer.getElapsedTime().asMilliseconds() > 1) {
             jogador->outMap();
             if (jogador->getRotate() == 360) {
@@ -128,6 +137,7 @@ void Game::renderFunctions(RenderWindow *window) {
         }
         window->draw(jogador->getSprite());
     } else {
+        control = true;
         jogador->setPos(window);
         testCheckpoint();
         window->draw(Checkpoints.getQuadrado());

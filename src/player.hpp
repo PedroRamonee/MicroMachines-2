@@ -15,7 +15,6 @@ class Player : public Entity {
     int typeRotate;
 
    public:
-   Music outmusic;
     Player();
     void setPos(RenderWindow *window);
     void outMap();
