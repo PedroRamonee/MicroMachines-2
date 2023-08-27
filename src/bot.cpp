@@ -52,7 +52,7 @@ Bot::Bot() {
                 defaultType.x = 482;
                 defaultType.y = 289;
                 break;
-             case 6:
+            case 6:
                 defaultType.x = 601;
                 defaultType.y = 289;
                 break;
@@ -109,123 +109,63 @@ void Bot::setPos(RenderWindow* window) {
 
  */
     if (clock.getElapsedTime().asMilliseconds() > 2) {
-        if (wayPointCount <= 13 && ida == 0) {
-            if (carro.getPosition().x != Waypoints[wayPointCount].x &&
-                carro.getPosition().y == Waypoints[wayPointCount].y) {
-                if (carro.getPosition().x > Waypoints[wayPointCount].x) {
-                    posX -= 1;
-                    carro.setRotation(initialRotate - 90.f);
-                } else {
-                    posX += 1;
-                    carro.setRotation(initialRotate + 90.f);
-                }
+        if (carro.getPosition().x != Waypoints[wayPointCount].x &&
+            carro.getPosition().y == Waypoints[wayPointCount].y) {
+            if (carro.getPosition().x > Waypoints[wayPointCount].x) {
+                posX -= 1;
+                carro.setRotation(initialRotate - 90.f);
+            } else {
+                posX += 1;
+                carro.setRotation(initialRotate + 90.f);
+            }
+        }
+
+        else if (carro.getPosition().y != Waypoints[wayPointCount].y &&
+                 carro.getPosition().x == Waypoints[wayPointCount].x) {
+            if (carro.getPosition().y > Waypoints[wayPointCount].y) {
+                posY -= 1;
+                carro.setRotation(initialRotate);
+            } else {
+                posY += 1;
+                carro.setRotation(initialRotate + 180.f);
             }
 
-            else if (carro.getPosition().y != Waypoints[wayPointCount].y &&
-                     carro.getPosition().x == Waypoints[wayPointCount].x) {
-                if (carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posY -= 1;
-                    carro.setRotation(initialRotate);
-                } else {
-                    posY += 1;
-                    carro.setRotation(initialRotate + 180.f);
-                }
+        } else if (carro.getPosition().x != Waypoints[wayPointCount].x &&
+                   carro.getPosition().y != Waypoints[wayPointCount].y) {
+            if (carro.getPosition().x > Waypoints[wayPointCount].x &&
+                carro.getPosition().y > Waypoints[wayPointCount].y) {
+                posX -= 0.5;
+                posY -= 0.5;
 
-            } else if (carro.getPosition().x != Waypoints[wayPointCount].x &&
-                       carro.getPosition().y != Waypoints[wayPointCount].y) {
-                if (carro.getPosition().x > Waypoints[wayPointCount].x &&
-                    carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posX -= 0.5;
-                    posY -= 0.5;
+                carro.setRotation(initialRotate - 45.f);
+            } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
+                       carro.getPosition().y < Waypoints[wayPointCount].y) {
+                posX += 0.5;
+                posY += 0.5;
 
-                    carro.setRotation(initialRotate - 45.f);
-                } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                           carro.getPosition().y < Waypoints[wayPointCount].y) {
-                    posX += 0.5;
-                    posY += 0.5;
+                carro.setRotation(initialRotate + 135.f);
+            } else if (carro.getPosition().x > Waypoints[wayPointCount].x &&
+                       carro.getPosition().y < Waypoints[wayPointCount].y) {
+                posX -= 0.5;
+                posY += 0.5;
 
-                    carro.setRotation(initialRotate + 45.f);
-                } else if (carro.getPosition().x > Waypoints[wayPointCount].x &&
-                           carro.getPosition().y < Waypoints[wayPointCount].y) {
-                    posX -= 0.5;
-                    posY += 0.5;
+                carro.setRotation(initialRotate + 45.f);
+            } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
+                       carro.getPosition().y > Waypoints[wayPointCount].y) {
+                posX += 0.5;
+                posY -= 0.5;
 
-                    carro.setRotation(initialRotate + 135.f);
-                } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                           carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posX += 0.5;
-                    posY -= 0.5;
-
-                    carro.setRotation(initialRotate - 135.f);
-                }
+                carro.setRotation(initialRotate - 135.f);
             }
+        }
 
-            if (carro.getPosition() == Waypoints[wayPointCount]) {
-                if (wayPointCount == 13) {
-                    ida = 1;
-                    wayPointCount = 12;
-                } else {
-                    wayPointCount++;
-                }
-            }
-        } else {
-            if (carro.getPosition().x != Waypoints[wayPointCount].x &&
-                carro.getPosition().y == Waypoints[wayPointCount].y) {
-                if (carro.getPosition().x > Waypoints[wayPointCount].x) {
-                    posX -= 1;
-                    carro.setRotation(initialRotate - 90.f);
-                } else {
-                    posX += 1;
-                    carro.setRotation(initialRotate + 90.f);
-                }
-            }
-
-            else if (carro.getPosition().y != Waypoints[wayPointCount].y &&
-                     carro.getPosition().x == Waypoints[wayPointCount].x) {
-                if (carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posY -= 1;
-                    carro.setRotation(initialRotate);
-                } else {
-                    posY += 1;
-                    carro.setRotation(initialRotate + 180.f);
-                }
-
-            } else if (carro.getPosition().x != Waypoints[wayPointCount].x &&
-                       carro.getPosition().y != Waypoints[wayPointCount].y) {
-                if (carro.getPosition().x > Waypoints[wayPointCount].x &&
-                    carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posX -= 0.5;
-                    posY -= 0.5;
-
-                    carro.setRotation(initialRotate - 135.f);
-                } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                           carro.getPosition().y < Waypoints[wayPointCount].y) {
-                    posX += 0.5;
-                    posY += 0.5;
-
-                    carro.setRotation(initialRotate + 135.f);
-                } else if (carro.getPosition().x > Waypoints[wayPointCount].x &&
-                           carro.getPosition().y < Waypoints[wayPointCount].y) {
-                    posX -= 0.5;
-                    posY += 0.5;
-
-                    carro.setRotation(initialRotate + 45.f);
-                } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                           carro.getPosition().y > Waypoints[wayPointCount].y) {
-                    posX += 0.5;
-                    posY -= 0.5;
-
-                    carro.setRotation(initialRotate - 45.f);
-                }
-            }
-
-            if (carro.getPosition() == Waypoints[wayPointCount]) {
-                if (wayPointCount == 0) {
-                    ida = 0;
-                    wayPointCount = 1;
-                } else {
-                    wayPointCount--;
-                }
+        if (carro.getPosition() == Waypoints[wayPointCount]) {
+            if (wayPointCount == 13) {
+                wayPointCount = 0;
+            } else {
+                wayPointCount++;
+                cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY ->"
+                     << Waypoints[wayPointCount].y << endl;
             }
         }
 
