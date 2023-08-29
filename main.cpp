@@ -1,9 +1,10 @@
 #include "src/game.hpp"
+#include "src/menu.hpp"
 
 int main() {
     RenderWindow window(VideoMode(500, 500), "MicroMachines 2 Remake");
 
-    Game *game = new Game();
+    Game *game = new Game(&window);
     game->Run(&window);
 
     delete game;
