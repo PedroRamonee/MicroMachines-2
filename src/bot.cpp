@@ -11,7 +11,7 @@ Bot::Bot() {
         - Inicializa os Waypoints do bot
         - Inicializa as variáveis de controle
     */
-    tex.loadFromFile("assets/Taxi.png");
+    tex.loadFromFile("assets/bot.png");
 
     carro.setTexture(tex);
     carro.setPosition(790.f, 600.f);
@@ -98,6 +98,8 @@ Bot::Bot() {
     wayPointCount = 0;
     ida = 0;
     repulsion = 1;
+    velocidade.x = 0;
+    velocidade.y = 0;
 }
 
 void Bot::setPos(RenderWindow* window) {
@@ -108,14 +110,16 @@ void Bot::setPos(RenderWindow* window) {
      - Define a posição do sprite e desenha na tela
 
  */
+    velocidade.x = 0;
+    velocidade.y = 0;
     if (clock.getElapsedTime().asMilliseconds() > 2) {
         if (carro.getPosition().x != Waypoints[wayPointCount].x &&
             carro.getPosition().y == Waypoints[wayPointCount].y) {
             if (carro.getPosition().x > Waypoints[wayPointCount].x) {
-                posX -= 1;
+                velocidade.x = -1;
                 carro.setRotation(initialRotate - 90.f);
             } else {
-                posX += 1;
+                velocidade.x = 1;
                 carro.setRotation(initialRotate + 90.f);
             }
         }
@@ -123,10 +127,10 @@ void Bot::setPos(RenderWindow* window) {
         else if (carro.getPosition().y != Waypoints[wayPointCount].y &&
                  carro.getPosition().x == Waypoints[wayPointCount].x) {
             if (carro.getPosition().y > Waypoints[wayPointCount].y) {
-                posY -= 1;
+                velocidade.y = -1;
                 carro.setRotation(initialRotate);
             } else {
-                posY += 1;
+                velocidade.y = 1;
                 carro.setRotation(initialRotate + 180.f);
             }
 
@@ -134,28 +138,28 @@ void Bot::setPos(RenderWindow* window) {
                    carro.getPosition().y != Waypoints[wayPointCount].y) {
             if (carro.getPosition().x > Waypoints[wayPointCount].x &&
                 carro.getPosition().y > Waypoints[wayPointCount].y) {
-                posX -= 0.5;
-                posY -= 0.5;
+                velocidade.x = -0.5;
+                velocidade.y = -0.5;
 
                 carro.setRotation(initialRotate - 45.f);
             } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
                        carro.getPosition().y < Waypoints[wayPointCount].y) {
-                posX += 0.5;
-                posY += 0.5;
+                velocidade.x = 0.5;
+                velocidade.y = 0.5;
 
                 carro.setRotation(initialRotate + 135.f);
             } else if (carro.getPosition().x > Waypoints[wayPointCount].x &&
                        carro.getPosition().y < Waypoints[wayPointCount].y) {
-                posX -= 0.5;
-                posY += 0.5;
-
-                carro.setRotation(initialRotate + 45.f);
-            } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
-                       carro.getPosition().y > Waypoints[wayPointCount].y) {
-                posX += 0.5;
-                posY -= 0.5;
+                velocidade.x = -0.5;
+                velocidade.y = 0.5;
 
                 carro.setRotation(initialRotate - 135.f);
+            } else if (carro.getPosition().x < Waypoints[wayPointCount].x &&
+                       carro.getPosition().y > Waypoints[wayPointCount].y) {
+                velocidade.x = 0.5;
+                velocidade.y = -0.5;
+
+                carro.setRotation(initialRotate + 45.f);
             }
         }
 
@@ -173,6 +177,9 @@ void Bot::setPos(RenderWindow* window) {
     }
 
     //  cout << posX << "," << posY << endl;
+
+    posX += velocidade.x;
+    posY += velocidade.y;
 
     carro.setPosition(posX, posY);
     window->draw(carro);

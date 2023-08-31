@@ -9,6 +9,7 @@ class Bot : public Entity {
     int wayPointCount;
     int ida;  // temporario
     float repulsion;
+    Vector2f velocidade;
 
    public:
     Bot();
