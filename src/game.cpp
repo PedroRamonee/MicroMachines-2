@@ -1,18 +1,15 @@
 #include "game.hpp"
 
-Game::Game() {
-    this->tema.openFromFile("assets/tema2.wav");
+Game::Game(RenderWindow *window) {
     this->colisionBuffer.loadFromFile("assets/colisao.wav");
     this->outBuffer.loadFromFile("assets/out.wav");
     this->colisionSound.setBuffer(colisionBuffer);
     this->outSound.setBuffer(outBuffer);
     colisionSound.setVolume(40.f);
     outSound.setVolume(40.f);
-    tema.setLoop(true);
-    tema.setVolume(40.f);
-    tema.play();
     control = true;
-    controlPanel = 0;
+    controlPanel = 1;
+    this->menu = new Menu(window);
 }
 
 void Game::entityRender(RenderWindow *window) {
@@ -158,25 +155,38 @@ void Game::Run(RenderWindow *window) {
 
     */
     while (window->isOpen()) {
-        while (window->pollEvent(event)) {
-            {
-                if (event.type == Event::Closed ||
-                    Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+        while (window->pollEvent(event)) 
+   {
+                if (event.type == Event::Closed) {
                     window->close();
                 }
             }
-        }
-
         switch (controlPanel) {
             case 0:
                 Render(window);
+                if(dorme==true){
+                    sleep(seconds(1.5f));
+                    dorme=false;
+                }
                 break;
             case 1:
-                // menu
+                window->clear();
+                menu->background(window);
+                menu->botoes(window,&controlPanel);
+                window->display();
                 break;
             case 2:
-                // etc...
+                 window->clear();
+                 menu->credits(window,&controlPanel);
+                 window->display();
                 break;
+            case 3:
+                window->close();
+             break;
+             case 4:
+                window->clear();
+                menu->historia(window,&controlPanel,&dorme);
+                window->display();
             default:
                 break;
         }

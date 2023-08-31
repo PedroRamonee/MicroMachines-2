@@ -4,6 +4,7 @@
 #include "checkpoint.hpp"
 #include "map.hpp"
 #include "player.hpp"
+#include "menu.hpp"
 
 class Game {
    private:
@@ -12,14 +13,15 @@ class Game {
     Event event;
     Bot *bot = new Bot();
     Checkpoint Checkpoints;
-    Music tema;
     Sound colisionSound;
     SoundBuffer colisionBuffer;
     SoundBuffer outBuffer;
     Sound outSound;
     bool control;
     int controlPanel;
-
+    Menu *menu;
+    bool dorme = false;
+    
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
 
@@ -28,7 +30,7 @@ class Game {
     bool colissionDetected = false;
 
    public:
-    Game();
+    Game(RenderWindow *Window);
     void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
     void testColission();
