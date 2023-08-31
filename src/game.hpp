@@ -21,13 +21,22 @@ class Game {
     int controlPanel;
     Menu *menu;
     bool dorme = false;
+    int Turns;
+    int controlCheckPoints;
+    int minutos;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
 
     Clock timer;
+    Clock clock;
+    Time elapsed1;
 
     bool colissionDetected = false;
+
+    Font fonte;
+    Text volta;
+    Text tempo;
 
    public:
     Game();
@@ -38,6 +47,8 @@ class Game {
     void renderFunctions(RenderWindow *window);
     void Run(RenderWindow *window);
     void testCheckpoint();
+    void countTurns(RenderWindow *window);
+    void temporizador(RenderWindow *winow);
 };
 
 #endif  // GAME_HPP_

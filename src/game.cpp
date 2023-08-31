@@ -3,6 +3,7 @@
 Game::Game() {
     this->colisionBuffer.loadFromFile("assets/colisao.wav");
     this->outBuffer.loadFromFile("assets/out.wav");
+    this->fonte.loadFromFile("assets/font.ttf");
     this->colisionSound.setBuffer(colisionBuffer);
     this->outSound.setBuffer(outBuffer);
     colisionSound.setVolume(40.f);
@@ -10,6 +11,16 @@ Game::Game() {
     control = true;
     controlPanel = 1;
     this->menu = new Menu();
+    minutos=0;
+    Turns=0;
+    controlCheckPoints=0;
+    volta.setFont(fonte);
+    volta.setCharacterSize(20);
+	volta.setFillColor(sf::Color::Red);
+    tempo.setFont(fonte);
+    tempo.setCharacterSize(20);
+	tempo.setFillColor(sf::Color::Red);
+    clock.restart();
 }
 
 void Game::entityRender(RenderWindow *window) {
@@ -77,9 +88,53 @@ void Game::testCheckpoint() {
     if (PlayerHitbox.intersects(Checkpoints.getHitbox())) {
         cout << "CHECKPOINTZADA LEK" << endl;
         Checkpoints.setCheckpoint();
+        controlCheckPoints++; 
+    }
+}
+void Game::countTurns(RenderWindow *window){
+
+   
+    if(Turns==0){
+        volta.setString("Voltas: 0/3");
+    }else if(Turns==1){
+        volta.setString("Voltas: 1/3");
+    }else if(Turns==2){
+        volta.setString("Voltas: 2/3");
+    }else{
+         volta.setString("Voltas: 3/3");
+    }
+    float x = jogador->getX()+15;
+    float y = jogador->getY()-135;
+    volta.setPosition(x, y);
+    window->draw(volta);
+
+    if(controlCheckPoints==6) {
+        Turns++;
+        controlCheckPoints=0;
+    }
+    if(Turns==3){
+        cout<<"CHEGADA FINAL!!!"<<endl;
     }
 }
 
+
+void Game::temporizador(RenderWindow *window){
+
+    elapsed1 = clock.getElapsedTime();
+   
+    stringstream ss;    
+    ss.str(string()); 
+    ss << endl << "Tempo: 00:";
+    ss << elapsed1.asSeconds();
+    tempo.setString( ss.str().c_str() );
+
+    float x = jogador->getX()+15;
+    float y = jogador->getY()-130;
+    tempo.setPosition(x, y);
+
+    window->draw(tempo);
+
+}
 void Game::colissionFunctions(RenderWindow *window) {
     /*
     Realiza as ações necessárias caso os jogadores se interceptem (colisão), e
@@ -138,6 +193,8 @@ void Game::renderFunctions(RenderWindow *window) {
         control = true;
         jogador->setPos(window);
         testCheckpoint();
+        countTurns(window);
+        temporizador(window);
         window->draw(Checkpoints.getQuadrado());
     }
 
