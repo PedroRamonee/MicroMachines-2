@@ -155,37 +155,36 @@ void Game::Run(RenderWindow *window) {
 
     */
     while (window->isOpen()) {
-        while (window->pollEvent(event)) 
-   {
-                if (event.type == Event::Closed) {
-                    window->close();
-                }
+        while (window->pollEvent(event)) {
+            if (event.type == Event::Closed) {
+                window->close();
             }
+        }
         switch (controlPanel) {
             case 0:
                 Render(window);
-                if(dorme==true){
+                if (dorme == true) {
                     sleep(seconds(1.5f));
-                    dorme=false;
+                    dorme = false;
                 }
                 break;
             case 1:
                 window->clear();
                 menu->background(window);
-                menu->botoes(window,&controlPanel);
+                menu->botoes(window, &controlPanel);
                 window->display();
                 break;
             case 2:
-                 window->clear();
-                 menu->credits(window,&controlPanel);
-                 window->display();
+                window->clear();
+                menu->credits(window, &controlPanel);
+                window->display();
                 break;
             case 3:
                 window->close();
-             break;
-             case 4:
+                break;
+            case 4:
                 window->clear();
-                menu->historia(window,&controlPanel,&dorme);
+                menu->historia(window, &controlPanel, &dorme);
                 window->display();
             default:
                 break;

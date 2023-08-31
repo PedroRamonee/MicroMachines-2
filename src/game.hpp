@@ -3,8 +3,8 @@
 #include "bot.hpp"
 #include "checkpoint.hpp"
 #include "map.hpp"
-#include "player.hpp"
 #include "menu.hpp"
+#include "player.hpp"
 
 class Game {
    private:
@@ -21,7 +21,7 @@ class Game {
     int controlPanel;
     Menu *menu;
     bool dorme = false;
-    
+
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;
 

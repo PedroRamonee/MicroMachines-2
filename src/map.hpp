@@ -14,7 +14,6 @@ class Mapa {
     Texture textura;
     Sprite sprite;
     View view;
-    
 
    public:
     Mapa();
