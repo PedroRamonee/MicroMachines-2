@@ -23,7 +23,7 @@ class Menu {
     Music tema;
 
    public:
-    Menu(RenderWindow *window);
+    Menu();
     void background(RenderWindow *window);
     void botoes(RenderWindow *window, int *control);
     void credits(RenderWindow *window, int *control);

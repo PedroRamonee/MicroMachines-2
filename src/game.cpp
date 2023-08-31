@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-Game::Game(RenderWindow *window) {
+Game::Game() {
     this->colisionBuffer.loadFromFile("assets/colisao.wav");
     this->outBuffer.loadFromFile("assets/out.wav");
     this->colisionSound.setBuffer(colisionBuffer);
@@ -9,7 +9,7 @@ Game::Game(RenderWindow *window) {
     outSound.setVolume(40.f);
     control = true;
     controlPanel = 1;
-    this->menu = new Menu(window);
+    this->menu = new Menu();
 }
 
 void Game::entityRender(RenderWindow *window) {

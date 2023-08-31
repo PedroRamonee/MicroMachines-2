@@ -1,6 +1,6 @@
 #include "menu.hpp"
 
-Menu::Menu(RenderWindow *window) {
+Menu::Menu() {
     // Construtor
 
     this->mainmenu[0].loadFromFile("assets/1.png");

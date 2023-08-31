@@ -30,7 +30,7 @@ class Game {
     bool colissionDetected = false;
 
    public:
-    Game(RenderWindow *Window);
+    Game();
     void entityRender(RenderWindow *window);
     void Render(RenderWindow *window);
     void testColission();
