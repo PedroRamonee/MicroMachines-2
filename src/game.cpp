@@ -182,7 +182,7 @@ void Game::renderFunctions(RenderWindow *window) {
             control = false;
         }
         if (timer.getElapsedTime().asMilliseconds() > 1) {
-            jogador->outMap();
+            jogador->outMap(Checkpoints.getLastCheck());
             if (jogador->getRotate() == 360) {
                 jogador->setVoltas();
             }

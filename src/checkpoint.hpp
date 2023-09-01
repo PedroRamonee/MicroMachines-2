@@ -15,6 +15,7 @@ class Checkpoint {
     void setCheckpoint();
     FloatRect getHitbox();
     RectangleShape getQuadrado();
+    Vector2f getLastCheck();
 };
 
 #endif  // CHECKPOINT_HPP_

@@ -140,7 +140,7 @@ float Player::getTypeRotate() {
     return typeRotate;
 }  // retorna o tipo de rotação atual do jogador
 
-void Player::outMap() {
+void Player::outMap(Vector2f lastCheckpoint) {
     /*
     Realiza as operações necessárias para corrigir o posicionamento do jogador
     caso saia da tela:
@@ -163,8 +163,8 @@ void Player::outMap() {
     }
     if (voltas == 3) {
         out = false;
-        posX = initialPos.x;
-        posY = initialPos.y;
+        posX = lastCheckpoint.x;
+        posY = lastCheckpoint.y;
         voltas = 0;
     }
 }

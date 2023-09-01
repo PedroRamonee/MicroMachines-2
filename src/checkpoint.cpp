@@ -76,3 +76,12 @@ void Checkpoint::setCheckpoint() {
     HitboxCheckpoint.left = CheckpointsPosition[CurrentCheckpoint].x;
     quadrado.setPosition(Vector2f(HitboxCheckpoint.left, HitboxCheckpoint.top));
 }
+
+Vector2f Checkpoint::getLastCheck(){
+    if(CurrentCheckpoint > 0){
+        return CheckpointsPosition[CurrentCheckpoint-1];
+    }
+    else{
+         return CheckpointsPosition[5];
+    }
+}
