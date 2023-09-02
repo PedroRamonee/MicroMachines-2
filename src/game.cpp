@@ -11,16 +11,17 @@ Game::Game() {
     control = true;
     controlPanel = 1;
     this->menu = new Menu();
-    minutos=0;
-    Turns=0;
-    controlCheckPoints=0;
+    minutos = 0;
+    Turns = 0;
+    controlCheckPoints = 0;
     volta.setFont(fonte);
     volta.setCharacterSize(20);
-	volta.setFillColor(sf::Color::Red);
+    volta.setFillColor(sf::Color::Red);
     tempo.setFont(fonte);
     tempo.setCharacterSize(20);
-	tempo.setFillColor(sf::Color::Red);
+    tempo.setFillColor(sf::Color::Red);
     clock.restart();
+    object.restart();
 }
 
 void Game::entityRender(RenderWindow *window) {
@@ -42,11 +43,14 @@ void Game::entityRender(RenderWindow *window) {
 
     if (colissionDetected == true) {
         colissionFunctions(window);
-    } else {
-        renderFunctions(window);
     }
+    if (objectCollide == true) {
+        collideObject(window);
+    }
+    renderFunctions(window);
+
     testColission();
-    testObstaculos(window);
+    testObstaculos();
 }
 
 void Game::Render(RenderWindow *window) {
@@ -89,70 +93,72 @@ void Game::testCheckpoint() {
     if (PlayerHitbox.intersects(Checkpoints.getHitbox())) {
         cout << "CHECKPOINTZADA LEK" << endl;
         Checkpoints.setCheckpoint();
-        controlCheckPoints++; 
+        controlCheckPoints++;
     }
 }
 
-void Game::testObstaculos(RenderWindow *window) {
+void Game::testObstaculos() {
     PlayerHitbox = jogador->getSprite().getGlobalBounds();
 
-    for(int i =0; i<6;i++ ){
+    for (int i = 0; i < 7; i++) {
         if (PlayerHitbox.intersects(personagens.returnPersonagens(i))) {
-        cout << "colidiu!" << endl;
-        jogador->collide();
-        window->draw(jogador->getSprite());
+            objectCollide = true;
         }
     }
-    
 }
-void Game::countTurns(RenderWindow *window){
-
-   
-    if(Turns==0){
-        volta.setString("Voltas: 0/3");
-    }else if(Turns==1){
-        volta.setString("Voltas: 1/3");
-    }else if(Turns==2){
-        volta.setString("Voltas: 2/3");
-    }else{
-         volta.setString("Voltas: 3/3");
+void Game::collideObject(RenderWindow *window) {
+    if (object.getElapsedTime().asMilliseconds() > 10) {
+        jogador->collide();
+        object.restart();
     }
-    float x = jogador->getX()+15;
-    float y = jogador->getY()-135;
+    window->draw(jogador->getSprite());
+    if (jogador->getRepulsion() == 15) {
+        objectCollide = false;
+    }
+}
+void Game::countTurns(RenderWindow *window) {
+    if (Turns == 0) {
+        volta.setString("Voltas: 0/3");
+    } else if (Turns == 1) {
+        volta.setString("Voltas: 1/3");
+    } else if (Turns == 2) {
+        volta.setString("Voltas: 2/3");
+    } else {
+        volta.setString("Voltas: 3/3");
+    }
+    float x = jogador->getX() + 15;
+    float y = jogador->getY() - 135;
     volta.setPosition(x, y);
     window->draw(volta);
 
-    if(controlCheckPoints==6) {
+    if (controlCheckPoints == 6) {
         Turns++;
-        controlCheckPoints=0;
+        controlCheckPoints = 0;
     }
-    if(Turns==3){
-        cout<<"CHEGADA FINAL!!!"<<endl;
+    if (Turns == 3) {
+        cout << "CHEGADA FINAL!!!" << endl;
     }
 }
 
-
-void Game::temporizador(RenderWindow *window){
-
+void Game::temporizador(RenderWindow *window) {
     elapsed1 = clock.getElapsedTime();
-   
-    stringstream ss;    
-    ss.str(string()); 
+
+    stringstream ss;
+    ss.str(string());
     ss << endl << "Tempo: 00:";
     ss << elapsed1.asSeconds();
-    tempo.setString( ss.str().c_str() );
+    tempo.setString(ss.str().c_str());
 
-    float x = jogador->getX()+15;
-    float y = jogador->getY()-130;
+    float x = jogador->getX() + 15;
+    float y = jogador->getY() - 130;
     tempo.setPosition(x, y);
 
     window->draw(tempo);
-
 }
 void Game::colissionFunctions(RenderWindow *window) {
     /*
-    Realiza as ações necessárias caso os jogadores se interceptem (colisão), e
-    desenha as entidades na tela:
+    Realiza as ações necessárias caso os jogadores se interceptem (colisão),
+    e desenha as entidades na tela:
 
         -Player->collide() --> Função que simula a colisão do jogador
         -Bot->collide() --> Função que simula a colisão do bot
@@ -181,13 +187,13 @@ void Game::renderFunctions(RenderWindow *window) {
     posicionamento:
 
         -Player->getOut() --> Retorna se o jogador está ou não fora da tela
-        -Player->outMap() --> Realiza as medidas para corrigir o posicionamento
-    do jogador -Player->getRotate() --> Retorna a angulação que o jogador se
-    moveu desde que saiu da tela -Player->setVoltas --> Aumenta em 1 unidade o
-    numero de voltas (rotação) que o carro deu -Player->setPos() --> Realiza as
-    operações basicas de movimentação do jogador -Player->getSprite() -->
-    Retorna o sprite do jogador -Bot->setPos() --> Realiza as operações basicas
-    de movimentação do bot
+        -Player->outMap() --> Realiza as medidas para corrigir o
+    posicionamento do jogador -Player->getRotate() --> Retorna a angulação
+    que o jogador se moveu desde que saiu da tela -Player->setVoltas -->
+    Aumenta em 1 unidade o numero de voltas (rotação) que o carro deu
+    -Player->setPos() --> Realiza as operações basicas de movimentação do
+    jogador -Player->getSprite() --> Retorna o sprite do jogador
+    -Bot->setPos() --> Realiza as operações basicas de movimentação do bot
 
     */
     if (jogador->getOut() == true) {

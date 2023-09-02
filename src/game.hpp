@@ -4,8 +4,8 @@
 #include "checkpoint.hpp"
 #include "map.hpp"
 #include "menu.hpp"
-#include "player.hpp"
 #include "obstaculos.hpp"
+#include "player.hpp"
 
 class Game {
    private:
@@ -33,9 +33,11 @@ class Game {
 
     Clock timer;
     Clock clock;
+    Clock object;
     Time elapsed1;
 
     bool colissionDetected = false;
+    bool objectCollide = false;
 
     Font fonte;
     Text volta;
@@ -47,10 +49,11 @@ class Game {
     void Render(RenderWindow *window);
     void testColission();
     void colissionFunctions(RenderWindow *window);
+    void collideObject(RenderWindow *window);
     void renderFunctions(RenderWindow *window);
     void Run(RenderWindow *window);
     void testCheckpoint();
-    void testObstaculos(RenderWindow *window);
+    void testObstaculos();
     void countTurns(RenderWindow *window);
     void temporizador(RenderWindow *winow);
 };
