@@ -46,6 +46,7 @@ void Game::entityRender(RenderWindow *window) {
         renderFunctions(window);
     }
     testColission();
+    testObstaculos(window);
 }
 
 void Game::Render(RenderWindow *window) {
@@ -90,6 +91,19 @@ void Game::testCheckpoint() {
         Checkpoints.setCheckpoint();
         controlCheckPoints++; 
     }
+}
+
+void Game::testObstaculos(RenderWindow *window) {
+    PlayerHitbox = jogador->getSprite().getGlobalBounds();
+
+    for(int i =0; i<6;i++ ){
+        if (PlayerHitbox.intersects(personagens.returnPersonagens(i))) {
+        cout << "colidiu!" << endl;
+        jogador->collide();
+        window->draw(jogador->getSprite());
+        }
+    }
+    
 }
 void Game::countTurns(RenderWindow *window){
 

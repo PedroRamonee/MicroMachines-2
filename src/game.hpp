@@ -5,14 +5,17 @@
 #include "map.hpp"
 #include "menu.hpp"
 #include "player.hpp"
+#include "obstaculos.hpp"
 
 class Game {
    private:
     Mapa *mapa = new Mapa();
     Player *jogador = new Player();
+    Obstaculo *obstaculos = new Obstaculo();
     Event event;
     Bot *bot = new Bot();
     Checkpoint Checkpoints;
+    Obstaculo personagens;
     Sound colisionSound;
     SoundBuffer colisionBuffer;
     SoundBuffer outBuffer;
@@ -47,6 +50,7 @@ class Game {
     void renderFunctions(RenderWindow *window);
     void Run(RenderWindow *window);
     void testCheckpoint();
+    void testObstaculos(RenderWindow *window);
     void countTurns(RenderWindow *window);
     void temporizador(RenderWindow *winow);
 };

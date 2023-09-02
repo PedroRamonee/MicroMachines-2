@@ -168,8 +168,8 @@ void Bot::setPos(RenderWindow* window) {
                 wayPointCount = 0;
             } else {
                 wayPointCount++;
-                cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY ->"
-                     << Waypoints[wayPointCount].y << endl;
+              /*  cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY ->"
+                     << Waypoints[wayPointCount].y << endl;*/
             }
         }
 
