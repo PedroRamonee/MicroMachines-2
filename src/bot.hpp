@@ -10,11 +10,13 @@ class Bot : public Entity {
     int ida;  // temporario
     float repulsion;
     Vector2f velocidade;
+    int counterVolta;
 
    public:
     Bot();
     void setPos(RenderWindow* window);
     void collide(int typeRotate);
     float getRepulsion();
+    int getCounter();
 };
 #endif  // BOT_HPP_

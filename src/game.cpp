@@ -138,6 +138,10 @@ void Game::countTurns(RenderWindow *window) {
     if (Turns == 3) {
         cout << "CHEGADA FINAL!!!" << endl;
     }
+
+    if(bot->getCounter() == 3){
+        cout << "BOT GANHOU!!!" << endl;
+    }
 }
 
 void Game::temporizador(RenderWindow *window) {

@@ -100,6 +100,7 @@ Bot::Bot() {
     repulsion = 1;
     velocidade.x = 0;
     velocidade.y = 0;
+    counterVolta = 0;
 }
 
 void Bot::setPos(RenderWindow* window) {
@@ -166,10 +167,12 @@ void Bot::setPos(RenderWindow* window) {
         if (carro.getPosition() == Waypoints[wayPointCount]) {
             if (wayPointCount == 13) {
                 wayPointCount = 0;
+                counterVolta++;
             } else {
                 wayPointCount++;
-              /*  cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY ->"
-                     << Waypoints[wayPointCount].y << endl;*/
+                /*  cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY
+                   ->"
+                       << Waypoints[wayPointCount].y << endl;*/
             }
         }
 
@@ -261,3 +264,5 @@ void Bot::collide(int typeRotate) {
 
     carro.setPosition(posX, posY);
 }
+
+int Bot::getCounter() { return counterVolta; }
