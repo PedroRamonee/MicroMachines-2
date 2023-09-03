@@ -38,6 +38,7 @@ class Game {
     Font fonte;
     Text volta;
     Text tempo;
+    Text check;
 
     Sound colisionSound;
     SoundBuffer colisionBuffer;
