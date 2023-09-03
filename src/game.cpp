@@ -264,6 +264,7 @@ void Game::Run(RenderWindow *window) {
                 if (dorme == true) {
                     sleep(seconds(1.5f));
                     dorme = false;
+                    clock.restart();
                 }
                 break;
             case 1:
