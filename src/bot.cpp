@@ -112,7 +112,7 @@ void Bot::setPos(RenderWindow* window) {
  */
     velocidade.x = 0;
     velocidade.y = 0;
-    if (clock.getElapsedTime().asMicroseconds() > 2000) {
+    if (clock.getElapsedTime().asMilliseconds() > 2) {
         if (carro.getPosition().x != Waypoints[wayPointCount].x &&
             carro.getPosition().y == Waypoints[wayPointCount].y) {
             if (carro.getPosition().x > Waypoints[wayPointCount].x) {
