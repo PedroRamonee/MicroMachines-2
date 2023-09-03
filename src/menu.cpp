@@ -264,7 +264,7 @@ void Menu::historia(RenderWindow *window, int *control, bool *dorme) {
     }
 }
 
-void Menu::historiaFinal(RenderWindow *window, int controle){
+void Menu::historiaFinal(RenderWindow *window, int controle) {
     Sprite sprite0;
     sprite0.setTexture(historiaFinalimg[0]);
     Sprite sprite1;
@@ -285,86 +285,86 @@ void Menu::historiaFinal(RenderWindow *window, int controle){
     sprite8.setTexture(historiaFinalimg[8]);
     Sprite sprite9;
     sprite9.setTexture(historiaFinalimg[9]);
-      
+
     Sprite sprite10;
     sprite10.setTexture(historiaFinalimg[10]);
     Sprite sprite11;
     sprite11.setTexture(historiaFinalimg[11]);
 
-    std::cout<<countHistFinal<<std::endl;
-    
-    if(controle==1){
-    window->draw(sprite0);
+    std::cout << countHistFinal << std::endl;
 
-    if (relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
-        countHistFinal = countHistFinal + 1;
-        relogioFinal.restart();
-    }
+    if (controle == 1) {
+        window->draw(sprite0);
 
-    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        countHistFinal = 10;
-    }
+        if (relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
+            countHistFinal = countHistFinal + 1;
+            relogioFinal.restart();
+        }
 
-    switch (countHistFinal) {
-        case 1:
-            window->draw(sprite1);
-            break;
-        case 2:
-            window->draw(sprite2);
-            break;
-        case 3:
-            window->draw(sprite3);
-            break;
-        case 4:
-            window->draw(sprite4);
-            break;
-        case 5:
-            window->draw(sprite5);
-            break;
-        case 6:
-            window->draw(sprite6);
-            break;
-        case 7:
-            window->draw(sprite7);
-            break;
-        case 8:
-            window->draw(sprite8);
-            break;
-        case 9:
-            window->draw(sprite9);
-            break;
-        case 10:
-            window->close();
-            break;
-    }
-}
-    
-    if(controle==2){
-    window->draw(sprite10);
+        if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+            countHistFinal = 10;
+        }
 
-    if (countHistFinal<2){
-        if(relogioFinal.getElapsedTime().asMilliseconds() > 20000) {
-        countHistFinal = countHistFinal + 1;
-        relogioFinal.restart();
-    }
-    if(countHistFinal==1){
-        if(relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
-        countHistFinal = countHistFinal + 1;
-        relogioFinal.restart();
-    }
+        switch (countHistFinal) {
+            case 1:
+                window->draw(sprite1);
+                break;
+            case 2:
+                window->draw(sprite2);
+                break;
+            case 3:
+                window->draw(sprite3);
+                break;
+            case 4:
+                window->draw(sprite4);
+                break;
+            case 5:
+                window->draw(sprite5);
+                break;
+            case 6:
+                window->draw(sprite6);
+                break;
+            case 7:
+                window->draw(sprite7);
+                break;
+            case 8:
+                window->draw(sprite8);
+                break;
+            case 9:
+                window->draw(sprite9);
+                break;
+            case 10:
+                window->close();
+                break;
         }
     }
-    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
-        countHistFinal = 2;
-    }
 
-    switch (countHistFinal) {
-        case 1:
-            window->draw(sprite11);
-            break;
-        case 2:
-            window->close();
-            break;
-    }
+    if (controle == 2) {
+        window->draw(sprite10);
+
+        if (countHistFinal < 2) {
+            if (relogioFinal.getElapsedTime().asMilliseconds() > 20000) {
+                countHistFinal = countHistFinal + 1;
+                relogioFinal.restart();
+            }
+            if (countHistFinal == 1) {
+                if (relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
+                    countHistFinal = countHistFinal + 1;
+                    relogioFinal.restart();
+                }
+            }
+        }
+        if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+            countHistFinal = 2;
+        }
+
+        switch (countHistFinal) {
+            case 1:
+                window->draw(sprite11);
+                break;
+            case 2:
+                window->close();
+                break;
+        }
     }
 }

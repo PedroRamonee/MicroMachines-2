@@ -3,7 +3,7 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include<iostream>
+#include <iostream>
 
 using namespace sf;
 
@@ -22,7 +22,7 @@ class Menu {
     Clock relogiohist;
     int counthist;
     Texture historiaFinalimg[12];
-    int countHistFinal=-1;
+    int countHistFinal = -1;
     Clock relogioFinal;
 
    public:

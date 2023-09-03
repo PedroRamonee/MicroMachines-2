@@ -50,25 +50,25 @@ void Player::setPos(RenderWindow *window) {
     velocidade.x = 0;
     velocidade.y = 0;
     if (Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        velocidade.x = 0.15;
+        velocidade.x = 0.18;
         velocidade.y = 0;
         carro.setRotation(initialRotate + 90.f);
         typeRotate = 1;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        velocidade.x = -0.15;
+        velocidade.x = -0.18;
         velocidade.y = 0;
         carro.setRotation(initialRotate - 90.f);
         typeRotate = 2;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        velocidade.y = -0.15;
+        velocidade.y = -0.18;
         velocidade.x = 0;
         carro.setRotation(initialRotate);
         typeRotate = 0;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        velocidade.y = 0.15;
+        velocidade.y = 0.18;
         velocidade.x = 0;
         carro.setRotation(initialRotate + 180.f);
         typeRotate = 3;
@@ -76,30 +76,30 @@ void Player::setPos(RenderWindow *window) {
     if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
         Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate + 45.f);
-        velocidade.x = 0.10;
-        velocidade.y = -0.10;
+        velocidade.x = 0.13;
+        velocidade.y = -0.13;
         typeRotate = 4;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
         Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         carro.setRotation(initialRotate - 45.f);
-        velocidade.x = -0.10;
-        velocidade.y = -0.10;
+        velocidade.x = -0.13;
+        velocidade.y = -0.13;
         typeRotate = 5;
     }
     if (Keyboard::isKeyPressed(sf::Keyboard::Right) &&
         Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate + 135.f);
-        velocidade.x = 0.10;
-        velocidade.y = 0.10;
+        velocidade.x = 0.13;
+        velocidade.y = 0.13;
         typeRotate = 6;
     }
 
     if (Keyboard::isKeyPressed(sf::Keyboard::Left) &&
         Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         carro.setRotation(initialRotate - 135.f);
-        velocidade.x = -0.10;
-        velocidade.y = 0.10;
+        velocidade.x = -0.13;
+        velocidade.y = 0.13;
         typeRotate = 7;
     }
 
@@ -108,7 +108,6 @@ void Player::setPos(RenderWindow *window) {
     posX += velocidade.x;
     posY += velocidade.y;
 
- 
     if (posX + carro.getGlobalBounds().width < 0 ||
         posX - carro.getGlobalBounds().width > 1200 ||
         posY + carro.getGlobalBounds().height < 0 ||
@@ -238,6 +237,5 @@ void Player::collide() {
             break;
     }
 
-  
     carro.setPosition(posX, posY);
 }

@@ -34,7 +34,7 @@ Checkpoint ::Checkpoint() {
                 break;
             case 5:
                 defaultType.x = 685;
-                defaultType.y = 589;
+                defaultType.y = 530;
                 break;
             default:
                 break;
@@ -58,8 +58,9 @@ FloatRect Checkpoint::getHitbox() {
 void Checkpoint::setCheckpoint() {
     /*
      Realiza a troca de checkpoints
-  */
 
+
+    */
     if (CurrentCheckpoint == 5) {
         CurrentCheckpoint = 0;
     } else {

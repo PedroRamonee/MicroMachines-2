@@ -8,13 +8,12 @@ class Checkpoint {
     FloatRect HitboxCheckpoint;
     vector<Vector2f> CheckpointsPosition;
     int CurrentCheckpoint;
-   
+
 
    public:
     Checkpoint();
     void setCheckpoint();
     FloatRect getHitbox();
-    
     Vector2f getLastCheck();
 };
 
