@@ -137,12 +137,8 @@ void Game::countTurns(RenderWindow *window) {
         Turns++;
         controlCheckPoints = 0;
     }
-    if (Turns == 3) {
-        cout << "CHEGADA FINAL!!!" << endl;
-    }
-
-    if (bot->getCounter() == 3) {
-        cout << "BOT GANHOU!!!" << endl;
+    if (Turns == 3 || bot->getCounter() == 3) {
+        controlPanel = 5;
     }
 }
 
@@ -236,7 +232,6 @@ void Game::renderFunctions(RenderWindow *window) {
         testCheckpoint();
         countTurns(window);
         temporizador(window);
-        window->draw(Checkpoints.getQuadrado());
     }
 
     bot->setPos(window);
@@ -258,6 +253,7 @@ void Game::Run(RenderWindow *window) {
                 window->close();
             }
         }
+
         switch (controlPanel) {
             case 0:
                 Render(window);
@@ -286,6 +282,12 @@ void Game::Run(RenderWindow *window) {
                 window->clear();
                 menu->historia(window, &controlPanel, &dorme);
                 window->display();
+                break;
+            case 5:
+                window->clear();
+                // colocar o fim aq
+                window->display();
+                break;
             default:
                 break;
         }

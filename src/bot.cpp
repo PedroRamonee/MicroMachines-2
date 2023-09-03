@@ -96,7 +96,6 @@ Bot::Bot() {
     }
 
     wayPointCount = 0;
-    ida = 0;
     repulsion = 1;
     velocidade.x = 0;
     velocidade.y = 0;

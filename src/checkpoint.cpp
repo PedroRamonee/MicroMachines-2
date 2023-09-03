@@ -49,18 +49,11 @@ Checkpoint ::Checkpoint() {
     HitboxCheckpoint.width = 100.f;
     HitboxCheckpoint.top = CheckpointsPosition[CurrentCheckpoint].y;
     HitboxCheckpoint.left = CheckpointsPosition[CurrentCheckpoint].x;
-
-    quadrado.setSize(Vector2f(HitboxCheckpoint.width, HitboxCheckpoint.height));
-    quadrado.setPosition(Vector2f(HitboxCheckpoint.left, HitboxCheckpoint.top));
-    quadrado.setFillColor(Color::Cyan);
 }
 
 FloatRect Checkpoint::getHitbox() {
     return HitboxCheckpoint;
 }  // retorna a hitbox
-RectangleShape Checkpoint::getQuadrado() {
-    return quadrado;
-}  // retorna o quadrado
 
 void Checkpoint::setCheckpoint() {
     /*
@@ -74,7 +67,6 @@ void Checkpoint::setCheckpoint() {
     }
     HitboxCheckpoint.top = CheckpointsPosition[CurrentCheckpoint].y;
     HitboxCheckpoint.left = CheckpointsPosition[CurrentCheckpoint].x;
-    quadrado.setPosition(Vector2f(HitboxCheckpoint.left, HitboxCheckpoint.top));
 }
 
 Vector2f Checkpoint::getLastCheck() {
