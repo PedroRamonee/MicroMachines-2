@@ -291,8 +291,6 @@ void Menu::historiaFinal(RenderWindow *window, int controle) {
     Sprite sprite11;
     sprite11.setTexture(historiaFinalimg[11]);
 
-    std::cout << countHistFinal << std::endl;
-
     if (controle == 1) {
         window->draw(sprite0);
 
