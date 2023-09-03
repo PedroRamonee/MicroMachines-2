@@ -93,7 +93,6 @@ void Game::testCheckpoint() {
     PlayerHitbox = jogador->getSprite().getGlobalBounds();
 
     if (PlayerHitbox.intersects(Checkpoints.getHitbox())) {
-        cout << "CHECKPOINTZADA LEK" << endl;
         Checkpoints.setCheckpoint();
         controlCheckPoints++;
     }

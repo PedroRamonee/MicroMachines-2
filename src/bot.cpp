@@ -169,16 +169,11 @@ void Bot::setPos(RenderWindow* window) {
                 counterVolta++;
             } else {
                 wayPointCount++;
-                /*  cout << "PosX ->" << Waypoints[wayPointCount].x << "\nPosY
-                   ->"
-                       << Waypoints[wayPointCount].y << endl;*/
             }
         }
 
         clock.restart();
     }
-
-    //  cout << posX << "," << posY << endl;
 
     posX += velocidade.x;
     posY += velocidade.y;

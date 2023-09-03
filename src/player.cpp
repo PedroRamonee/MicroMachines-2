@@ -108,10 +108,7 @@ void Player::setPos(RenderWindow *window) {
     posX += velocidade.x;
     posY += velocidade.y;
 
-    /* if (Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-         cout << "PosX ->" << posX << "\nPosY ->" << posY << endl;
-     }*/
-
+ 
     if (posX + carro.getGlobalBounds().width < 0 ||
         posX - carro.getGlobalBounds().width > 1200 ||
         posY + carro.getGlobalBounds().height < 0 ||
@@ -241,9 +238,6 @@ void Player::collide() {
             break;
     }
 
-    /*  cout << repulsion << endl;
-
-     cout << "PosX ->" << posX << "\nPosY ->" << posY << endl;*/
-
+  
     carro.setPosition(posX, posY);
 }
