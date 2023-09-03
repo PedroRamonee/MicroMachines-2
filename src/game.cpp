@@ -262,9 +262,10 @@ void Game::Run(RenderWindow *window) {
             case 0:
                 Render(window);
                 if (dorme == true) {
-                    sleep(seconds(1.5f));
-                    dorme = false;
                     clock.restart();
+                    sleep(seconds(1.5f));
+                    clock.restart();
+                    dorme = false;
                 }
                 break;
             case 1:
