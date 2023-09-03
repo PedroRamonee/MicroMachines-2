@@ -22,6 +22,9 @@ Game::Game() {
     tempo.setFont(fonte);
     tempo.setCharacterSize(20);
     tempo.setFillColor(sf::Color::Red);
+    check.setFont(fonte);
+    check.setCharacterSize(16);
+    check.setFillColor(Color::Red);
     clock.restart();
     object.restart();
 }
@@ -127,10 +130,39 @@ void Game::countTurns(RenderWindow *window) {
     } else {
         volta.setString("Voltas: 3/3");
     }
+
+    switch (controlCheckPoints) {
+        case 0:
+            check.setString("Checkpoints: 0/6");
+            break;
+        case 1:
+            check.setString("Checkpoints: 1/6");
+            break;
+        case 2:
+            check.setString("Checkpoints: 2/6");
+            break;
+        case 3:
+            check.setString("Checkpoints: 3/6");
+            break;
+        case 4:
+            check.setString("Checkpoints: 4/6");
+            break;
+        case 5:
+            check.setString("Checkpoints: 5/6");
+            break;
+        case 6:
+            check.setString("Checkpoints: 6/6");
+            break;
+
+        default:
+            break;
+    }
     float x = jogador->getX() + 15;
     float y = jogador->getY() - 135;
     volta.setPosition(x, y);
+    check.setPosition(x - 10, y + 40);
     window->draw(volta);
+    window->draw(check);
 
     if (controlCheckPoints == 6) {
         Turns++;
@@ -236,7 +268,7 @@ void Game::renderFunctions(RenderWindow *window) {
     bot->setPos(window);
 }
 
-void Game::Run(RenderWindow *window) {
+void Game::Run(RenderWindow *window, View defaultWindow) {
     /*
     Loop principal do jogo, Função de tratamento de tela é chamada e
     (futuramente) os menus são chamados:
@@ -283,6 +315,7 @@ void Game::Run(RenderWindow *window) {
                 window->display();
                 break;
             case 5:
+                window->setView(defaultWindow);
                 window->clear();
                 // colocar o fim aq
                 window->display();

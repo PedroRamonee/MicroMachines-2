@@ -37,6 +37,7 @@ class Game {
     Font fonte;
     Text volta;
     Text tempo;
+    Text check;
 
     Sound colisionSound;
     SoundBuffer colisionBuffer;
@@ -53,7 +54,7 @@ class Game {
     void colissionFunctions(RenderWindow *window);
     void collideObject(RenderWindow *window);
     void renderFunctions(RenderWindow *window);
-    void Run(RenderWindow *window);
+    void Run(RenderWindow *window, View defaulWindow);
     void testCheckpoint();
     void testObstaculos();
     void countTurns(RenderWindow *window);
