@@ -14,7 +14,7 @@ Game::Game() {
     dorme = false;
     controlPanel = 1;
     minutos = 0;
-    Turns = 0;
+    Turns = 2;
     controlCheckPoints = 0;
     volta.setFont(fonte);
     volta.setCharacterSize(20);
@@ -168,6 +168,23 @@ void Game::countTurns(RenderWindow *window) {
         Turns++;
         controlCheckPoints = 0;
     }
+
+    if(Turns==3){
+        controleDoFinal=1;
+        menu->tema.pause();
+        menu->musicasFinal[1].play();
+        sf::sleep(seconds(3.0f));
+        menu->musicasFinal[0].play();
+    }
+
+    if(bot->getCounter() == 3){
+        controleDoFinal=2;
+        menu->tema.pause();
+        menu->musicasFinal[3].play();
+        sf::sleep(seconds(5.0f));
+        menu->musicasFinal[2].play();
+    }
+
     if (Turns == 3 || bot->getCounter() == 3) {
         controlPanel = 5;
     }
@@ -317,7 +334,7 @@ void Game::Run(RenderWindow *window, View defaultWindow) {
             case 5:
                 window->setView(defaultWindow);
                 window->clear();
-                // colocar o fim aq
+                menu->historiaFinal(window,controleDoFinal);
                 window->display();
                 break;
             default:

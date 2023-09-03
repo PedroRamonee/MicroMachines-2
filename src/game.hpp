@@ -20,6 +20,7 @@ class Game {
     int Turns;
     int controlCheckPoints;
     int minutos;
+    int controleDoFinal;
 
     FloatRect PlayerHitbox;
     FloatRect BotHitbox;

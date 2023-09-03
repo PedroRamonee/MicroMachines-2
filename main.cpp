@@ -6,6 +6,10 @@ int main() {
 
     View defaultWindow = window.getDefaultView();
 
+    sf::Image image;
+    image.loadFromFile("assets/icone.png");
+    window.setIcon(image.getSize().x, image.getSize().y, image.getPixelsPtr());
+
     Game *game = new Game();
     game->Run(&window, defaultWindow);
 

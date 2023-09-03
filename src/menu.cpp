@@ -3,6 +3,11 @@
 Menu::Menu() {
     // Construtor
 
+    this->musicasFinal[0].openFromFile("assets/GOODENDING/music.wav");
+    this->musicasFinal[1].openFromFile("assets/GOODENDING/yay.wav");
+    this->musicasFinal[2].openFromFile("assets/BADENDING/musica.wav");
+    this->musicasFinal[3].openFromFile("assets/BADENDING/jumpsacre.wav");
+
     this->mainmenu[0].loadFromFile("assets/1.png");
     this->mainmenu[1].loadFromFile("assets/2.png");
     this->mainmenu[2].loadFromFile("assets/3.png");
@@ -41,6 +46,20 @@ Menu::Menu() {
     this->tema.openFromFile("assets/tema2.wav");
     tema.setLoop(true);
     tema.setVolume(40.f);
+
+    this->historiaFinalimg[0].loadFromFile("assets/GOODENDING/0.png");
+    this->historiaFinalimg[1].loadFromFile("assets/GOODENDING/1.png");
+    this->historiaFinalimg[2].loadFromFile("assets/GOODENDING/2.png");
+    this->historiaFinalimg[3].loadFromFile("assets/GOODENDING/3.png");
+    this->historiaFinalimg[4].loadFromFile("assets/GOODENDING/4.png");
+    this->historiaFinalimg[5].loadFromFile("assets/GOODENDING/5.png");
+    this->historiaFinalimg[6].loadFromFile("assets/GOODENDING/6.png");
+    this->historiaFinalimg[7].loadFromFile("assets/GOODENDING/7.png");
+    this->historiaFinalimg[8].loadFromFile("assets/GOODENDING/8.png");
+    this->historiaFinalimg[9].loadFromFile("assets/GOODENDING/9.png");
+
+    this->historiaFinalimg[10].loadFromFile("assets/BADENDING/1.png");
+    this->historiaFinalimg[11].loadFromFile("assets/BADENDING/2.png");
 }
 
 void Menu::background(RenderWindow *window) {
@@ -242,5 +261,110 @@ void Menu::historia(RenderWindow *window, int *control, bool *dorme) {
             tema.play();
             *dorme = true;
             break;
+    }
+}
+
+void Menu::historiaFinal(RenderWindow *window, int controle){
+    Sprite sprite0;
+    sprite0.setTexture(historiaFinalimg[0]);
+    Sprite sprite1;
+    sprite1.setTexture(historiaFinalimg[1]);
+    Sprite sprite2;
+    sprite2.setTexture(historiaFinalimg[2]);
+    Sprite sprite3;
+    sprite3.setTexture(historiaFinalimg[3]);
+    Sprite sprite4;
+    sprite4.setTexture(historiaFinalimg[4]);
+    Sprite sprite5;
+    sprite5.setTexture(historiaFinalimg[5]);
+    Sprite sprite6;
+    sprite6.setTexture(historiaFinalimg[6]);
+    Sprite sprite7;
+    sprite7.setTexture(historiaFinalimg[7]);
+    Sprite sprite8;
+    sprite8.setTexture(historiaFinalimg[8]);
+    Sprite sprite9;
+    sprite9.setTexture(historiaFinalimg[9]);
+      
+    Sprite sprite10;
+    sprite10.setTexture(historiaFinalimg[10]);
+    Sprite sprite11;
+    sprite11.setTexture(historiaFinalimg[11]);
+
+    std::cout<<countHistFinal<<std::endl;
+    
+    if(controle==1){
+    window->draw(sprite0);
+
+    if (relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
+        countHistFinal = countHistFinal + 1;
+        relogioFinal.restart();
+    }
+
+    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+        countHistFinal = 10;
+    }
+
+    switch (countHistFinal) {
+        case 1:
+            window->draw(sprite1);
+            break;
+        case 2:
+            window->draw(sprite2);
+            break;
+        case 3:
+            window->draw(sprite3);
+            break;
+        case 4:
+            window->draw(sprite4);
+            break;
+        case 5:
+            window->draw(sprite5);
+            break;
+        case 6:
+            window->draw(sprite6);
+            break;
+        case 7:
+            window->draw(sprite7);
+            break;
+        case 8:
+            window->draw(sprite8);
+            break;
+        case 9:
+            window->draw(sprite9);
+            break;
+        case 10:
+            window->close();
+            break;
+    }
+}
+    
+    if(controle==2){
+    window->draw(sprite10);
+
+    if (countHistFinal<2){
+        if(relogioFinal.getElapsedTime().asMilliseconds() > 20000) {
+        countHistFinal = countHistFinal + 1;
+        relogioFinal.restart();
+    }
+    if(countHistFinal==1){
+        if(relogioFinal.getElapsedTime().asMilliseconds() > 5000) {
+        countHistFinal = countHistFinal + 1;
+        relogioFinal.restart();
+    }
+        }
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+        countHistFinal = 2;
+    }
+
+    switch (countHistFinal) {
+        case 1:
+            window->draw(sprite11);
+            break;
+        case 2:
+            window->close();
+            break;
+    }
     }
 }
