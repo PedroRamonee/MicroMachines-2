@@ -4,7 +4,6 @@
 
 class Obstaculo {
    public:
-
     FloatRect bear;
     FloatRect jokers;
     FloatRect chica;

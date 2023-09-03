@@ -1,7 +1,6 @@
 #include "obstaculos.hpp"
 
 Obstaculo::Obstaculo() {
-
     bonnie.height = 157;
     bonnie.width = 130;
     bonnie.top = 45;
@@ -44,9 +43,6 @@ Obstaculo::Obstaculo() {
     vetor.push_back(foxy);
     vetor.push_back(freddy);
     vetor.push_back(purple);
-
 }
 
-FloatRect Obstaculo:: returnPersonagens(int i){
-    return vetor[i];
-}
+FloatRect Obstaculo::returnPersonagens(int i) { return vetor[i]; }

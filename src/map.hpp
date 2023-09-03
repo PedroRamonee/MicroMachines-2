@@ -4,8 +4,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <vector>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 using namespace sf;

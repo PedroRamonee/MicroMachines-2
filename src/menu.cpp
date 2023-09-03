@@ -204,11 +204,10 @@ void Menu::historia(RenderWindow *window, int *control, bool *dorme) {
         relogio.restart();
     }
 
-        if (Keyboard::isKeyPressed(Keyboard::Escape)){
-            counthist=10;
-        }
-        
-    
+    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+        counthist = 10;
+    }
+
     switch (counthist) {
         case 1:
             window->draw(sprite1);

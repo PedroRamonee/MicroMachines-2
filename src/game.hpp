@@ -11,19 +11,12 @@ class Game {
    private:
     Mapa *mapa = new Mapa();
     Player *jogador = new Player();
-    Obstaculo *obstaculos = new Obstaculo();
-    Event event;
     Bot *bot = new Bot();
     Checkpoint Checkpoints;
     Obstaculo personagens;
-    Sound colisionSound;
-    SoundBuffer colisionBuffer;
-    SoundBuffer outBuffer;
-    Sound outSound;
-    bool control;
+    Menu *menu = new Menu();
+
     int controlPanel;
-    Menu *menu;
-    bool dorme = false;
     int Turns;
     int controlCheckPoints;
     int minutos;
@@ -36,12 +29,21 @@ class Game {
     Clock object;
     Time elapsed1;
 
-    bool colissionDetected = false;
-    bool objectCollide = false;
+    bool colissionDetected;
+    bool objectCollide;
+    bool control;
+    bool dorme;
 
     Font fonte;
     Text volta;
     Text tempo;
+
+    Sound colisionSound;
+    SoundBuffer colisionBuffer;
+    SoundBuffer outBuffer;
+    Sound outSound;
+
+    Event event;
 
    public:
     Game();

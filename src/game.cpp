@@ -9,8 +9,10 @@ Game::Game() {
     colisionSound.setVolume(40.f);
     outSound.setVolume(40.f);
     control = true;
+    colissionDetected = false;
+    objectCollide = false;
+    dorme = false;
     controlPanel = 1;
-    this->menu = new Menu();
     minutos = 0;
     Turns = 0;
     controlCheckPoints = 0;
@@ -139,30 +141,33 @@ void Game::countTurns(RenderWindow *window) {
         cout << "CHEGADA FINAL!!!" << endl;
     }
 
-    if(bot->getCounter() == 3){
+    if (bot->getCounter() == 3) {
         cout << "BOT GANHOU!!!" << endl;
     }
 }
 
 void Game::temporizador(RenderWindow *window) {
-
     tempo.setString("Tempo - 0.00");
 
-    if((int(clock.getElapsedTime().asSeconds()))<60){
-    tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())) + "." +
-                    to_string(int(clock.getElapsedTime().asMilliseconds() -
-                    int(clock.getElapsedTime().asSeconds()) * 1000) /10));
-    }else{
+    if ((int(clock.getElapsedTime().asSeconds())) < 60) {
+        tempo.setString(
+            "Tempo - " + to_string(int(clock.getElapsedTime().asSeconds())) +
+            "." +
+            to_string(int(clock.getElapsedTime().asMilliseconds() -
+                          int(clock.getElapsedTime().asSeconds()) * 1000) /
+                      10));
+    } else {
+        if ((int(clock.getElapsedTime().asSeconds())) % 60 < 10) {
+            tempo.setString(
+                "Tempo - " +
+                to_string(int(clock.getElapsedTime().asSeconds()) / 60) + ":0" +
+                to_string(int(clock.getElapsedTime().asSeconds()) % 60));
 
-        if((int(clock.getElapsedTime().asSeconds()))%60<10){
-
-        tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())/60) + ":0" +
-        to_string(int(clock.getElapsedTime().asSeconds())%60));
-
-        }else{
-
-            tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())/60) + ":" +
-            to_string(int(clock.getElapsedTime().asSeconds())%60));
+        } else {
+            tempo.setString(
+                "Tempo - " +
+                to_string(int(clock.getElapsedTime().asSeconds()) / 60) + ":" +
+                to_string(int(clock.getElapsedTime().asSeconds()) % 60));
         }
     }
     float x = jogador->getX() + 15;
