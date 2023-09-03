@@ -145,16 +145,28 @@ void Game::countTurns(RenderWindow *window) {
 }
 
 void Game::temporizador(RenderWindow *window) {
-    elapsed1 = clock.getElapsedTime();
 
-    stringstream ss;
-    ss.str(string());
-    ss << endl << "Tempo: 00:";
-    ss << elapsed1.asSeconds();
-    tempo.setString(ss.str().c_str());
+    tempo.setString("Tempo - 0.00");
 
+    if((int(clock.getElapsedTime().asSeconds()))<60){
+    tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())) + "." +
+                    to_string(int(clock.getElapsedTime().asMilliseconds() -
+                    int(clock.getElapsedTime().asSeconds()) * 1000) /10));
+    }else{
+
+        if((int(clock.getElapsedTime().asSeconds()))%60<10){
+
+        tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())/60) + ":0" +
+        to_string(int(clock.getElapsedTime().asSeconds())%60));
+
+        }else{
+
+            tempo.setString("Tempo - "+ to_string(int(clock.getElapsedTime().asSeconds())/60) + ":" +
+            to_string(int(clock.getElapsedTime().asSeconds())%60));
+        }
+    }
     float x = jogador->getX() + 15;
-    float y = jogador->getY() - 130;
+    float y = jogador->getY() - 115;
     tempo.setPosition(x, y);
 
     window->draw(tempo);
